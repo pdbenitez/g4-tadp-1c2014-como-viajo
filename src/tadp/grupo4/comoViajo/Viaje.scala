@@ -4,6 +4,7 @@ class Viaje {
 
   //var origen: Direccion
   //var destino: Direccion
+
   var recorridos: List[Recorrido] = Nil
 
   def getCosto: Double =
