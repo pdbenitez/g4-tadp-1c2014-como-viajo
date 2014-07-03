@@ -25,6 +25,6 @@ http://www.scala-lang.org/download/
  Click derecho en el proyecto e ir a "Open Module Settings". Ir a Global Libraries.  
  Seleccionar el + y bajar de Maven.  
  Para ScalaTest: org.scalatest:scalatest_2.11:2.1.7  
- Luego click derecho en cada una individualmente y poner "Copy to Proyect".  
+ Luego click derecho en cada una individualmente y poner "Add to modules.." (Si es que no te lo pidio antes).  
  Dar a ok y no copiar realmente sino que la libreria sea enlazada.  
 > Nota: no logre agregar el framework support para Maven porque rompia todo el proyecto, God Knows Why.  
