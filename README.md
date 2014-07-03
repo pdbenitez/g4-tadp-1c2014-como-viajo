@@ -20,11 +20,10 @@ http://www.scala-lang.org/download/
  Luego click derecho en el proyecto y elejir "Add Framework Support.."  
  Elejir Scala y seleccionar donde se lo extrajo.  
 
-4. Para utilizar specs2 y ScalaTests
+4. Para utilizar ScalaTests
  
  Click derecho en el proyecto e ir a "Open Module Settings". Ir a Global Libraries.  
  Seleccionar el + y bajar de Maven.  
- Para specs2: org.specs2:specs2_2.10:2.0  
  Para ScalaTest: org.scalatest:scalatest_2.11:2.1.7  
  Luego click derecho en cada una individualmente y poner "Copy to Proyect".  
  Dar a ok y no copiar realmente sino que la libreria sea enlazada.  
