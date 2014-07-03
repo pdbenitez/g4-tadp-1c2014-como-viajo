@@ -4,8 +4,8 @@ class Subte(linea: String) extends Transporte {
 
   val lineaSubte = linea
 
-  def getTiempo(unaDireccion: Direccion, otraDireccion: Direccion): Double = 5
+  def getTiempo(unaParada: Parada, otraParada: Parada): Double = 5
 
-  def getCosto(unaDireccion: Direccion, otraDireccion: Direccion) = 4.5
+  def getCosto(unaParada: Parada, otraParada: Parada) = 4.5
 
 }

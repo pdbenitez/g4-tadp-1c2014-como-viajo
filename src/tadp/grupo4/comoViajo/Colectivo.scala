@@ -4,17 +4,17 @@ class Colectivo(linea: Int) extends Transporte {
 
   val numeroColectivo = linea
 
-  def getTiempo(unaDireccion: Direccion, otraDireccion: Direccion): Double =
+  def getTiempo(unaParada: Parada, otraParada: Parada): Double =
     {
       //(this.moduloExterno.getDistanciaEntreColectivos(unaDireccion, this, this) / 1000) / 15
     15
     }
-  def getCosto(unaDireccion: Direccion, otraDireccion: Direccion): Double =
+  def getCosto(unaParada: Parada, otraParada: Parada): Double =
     {
-      this.getPrecioEnBaseADistancia(unaDireccion: Direccion, otraDireccion: Direccion)
+      this.getPrecioEnBaseADistancia(unaParada, otraParada)
     }
 
-  def getPrecioEnBaseADistancia(unaDireccion: Direccion, otraDireccion: Direccion): Double =
+  def getPrecioEnBaseADistancia(unaParada: Parada, otraParada: Parada): Double =
     {
       var distancia = 13
       //  this.moduloExterno.getDistanciaEntreColectivos(unaDireccion, this, this) / 1000

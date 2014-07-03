@@ -11,13 +11,12 @@ class BuscadorDeViajes (modulo: ModuloExterno){
 
   def obtenerViajes(origen: Direccion, destino: Direccion, criterio: CriterioDeViaje): List[Viaje] =
     {
-    var paradas = this.moduloExterno.getTransportesQuePasanCercaDe(origen)
-      //this.criterio.getViajes(moduloExterno, origen, destino, tarjeta)
-      //this.moduloExterno.g
-    
-    println(paradas.toString)
-      Nil
+    var paradasOrigen = this.moduloExterno.getTransportesQuePasanCercaDe(origen)
+
+
+    var paradasDestino = this.moduloExterno.getTransportesQuePasanCercaDe(destino)
+    //this.criterio.getViajes(moduloExterno, origen, destino, tarjeta)
+    //this.moduloExterno.g
+      null
     }
-  
-  
 }

@@ -1,6 +1,5 @@
 package tadp.grupo4.comoViajo
 
-class Parada(unTransporte: Transporte, unaDireccion: Direccion) {
-  var transporte = unTransporte
-  var direccion = unaDireccion
+class Parada(val transporte: Transporte,val direccion: Direccion) {
+
 }

@@ -2,19 +2,20 @@ package tadp.grupo4.comoViajo
 
 abstract class Tren extends Transporte {
 
-  def getTiempo(unaDireccion: Direccion, otraDireccion: Direccion): Double =
+  def getTiempo(unaParada: Parada, otraParada: Parada): Double =
     {
       5
     }
-  def getCosto(unaDireccion: Direccion, otraDireccion: Direccion): Double =
+  def getCosto(unaParada: Parada, otraParada: Parada): Double =
     {
-      this.getPrecioEnBaseAEstaciones(unaDireccion, otraDireccion)
+      this.getPrecioEnBaseAEstaciones(unaParada, otraParada)
     }
 
-  def getPrecioEnBaseAEstaciones(unaDireccion: Direccion, otraDireccion: Direccion): Double =
+  def getPrecioEnBaseAEstaciones(unaParada: Parada, otraParada: Parada): Double =
     {
       var cantEstaciones = 123 
         //this.moduloExterno.getCantidadDeEstaciones(unaDireccion, otraDireccion)
+      //En funcional esto va con pattern matching
       if (cantEstaciones <= 5) {
         2.0
       } else {

@@ -5,9 +5,9 @@ import tadp.grupo4.moduloExterno.ModuloExterno
 trait Transporte {
 
   //val moduloExterno: ModuloExterno = Nil
-  var listaDeParadas: List[Direccion] = Nil
+  var listaDeParadas: List[Parada] = Nil
 
-  def getTiempo(unaDireccion: Direccion, otraDireccion: Direccion): Double
-  def getCosto(unaDireccion: Direccion, otraDireccion: Direccion): Double
+  def getTiempo(unaDireccion: Parada, otraDireccion: Parada): Double
+  def getCosto(unaDireccion: Parada, otraDireccion: Parada): Double
 
 }
