@@ -28,6 +28,6 @@ http://www.scala-lang.org/download/
  Luego click derecho en cada una individualmente y poner "Add to modules.." (Si es que no te lo pidio antes).  
  Dar a ok y no copiar realmente sino que la libreria sea enlazada.  
  
- Para usar ScalaTest aca una guia: `http://www.scalatest.org/user_guide`
+ Para usar ScalaTest aca una guia: http://www.scalatest.org/user_guide
 
 > Nota: no logre agregar el framework support para Maven porque rompia todo el proyecto, God Knows Why.  
