@@ -15,3 +15,9 @@
 .idea/.name
 out/
 *.iml
+<<<<<<< HEAD
+=======
+# Git Ignore para Scala #
+/out
+/.idea
+>>>>>>> gitignore actualizado
