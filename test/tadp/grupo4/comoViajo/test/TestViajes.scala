@@ -10,6 +10,7 @@ import tadp.grupo4.moduloExterno.ModuloExterno
 import org.scalatest._
 
 class TestViajes extends FlatSpec with Matchers {
+  //Aca solo van tests para ver q programamos bien nuestro modulo externo
 
   var origen = new Direccion("Corrientes", 5000, "Villa Crespo")
   var destino = new Direccion("Corrientes", 3000, "Villa Crespo")
