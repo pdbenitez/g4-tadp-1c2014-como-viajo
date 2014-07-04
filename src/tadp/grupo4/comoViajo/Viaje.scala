@@ -1,25 +1,25 @@
 package tadp.grupo4.comoViajo
 
-class Viaje {
+class Viaje (var recorridos: List[Recorrido]){
 
   //var origen: Direccion
   //var destino: Direccion
 
-  var recorridos: List[Recorrido] = Nil
-
   def getCosto: Double =
     {
       var costoTotal: Double = 0
-      recorridos.foreach((unRecorrido: Recorrido) =>
-        costoTotal + unRecorrido.costo)
+      for(unRecorrido<- recorridos){
+        costoTotal + unRecorrido.costo
+      }
       costoTotal
     }
 
   def getTiempo: Double =
     {
       var tiempoTotal: Double = 0
-      recorridos.foreach((unRecorrido: Recorrido) =>
-        tiempoTotal + unRecorrido.tiempo)
+      for(unRecorrido<- recorridos){
+        tiempoTotal + unRecorrido.tiempo
+      }
       tiempoTotal
     }
 }

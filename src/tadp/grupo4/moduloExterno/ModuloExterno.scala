@@ -4,9 +4,6 @@ import tadp.grupo4.comoViajo._
 import scala.collection.mutable.ListBuffer
 
 object ModuloExterno {
-
-  var baseDeDirecciones: List[Recorrido] = Nil //ESTO ME SIRVE PARA ALGO?? ---> BORRAR
-
   var subteB: Transporte = new Subte("B")
 
   var paradasSubteB = List(
@@ -37,19 +34,69 @@ object ModuloExterno {
     new Parada(colectivo24,new Direccion("Corrientes", 2000, "Balvanera", new Coordenada(2,0))),
     new Parada(colectivo24,new Direccion("Corrientes", 1000, "San Nicolas", new Coordenada(1,0))))
 
-  
   colectivo24.listaDeParadas_=(direccionesColectivo24)
 
-  var baseDeTransportesConSusParadas: List[Transporte] = List(subteB, colectivo24)
+  var colectivo160: Transporte = new Colectivo(24)
 
-  def getTransportesQuePasanCercaDe(unaDireccion: Direccion): List[Parada] =
-    {
-      var paradas: ListBuffer[Parada] = new ListBuffer[Parada] 
+  var direccionesColectivo160= List(
+    new Parada(colectivo160,new Direccion("Rivadavia", 0,      "Centro",     new Coordenada(0,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 500,    "Centro",     new Coordenada(0.5,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 1000,   "Centro",     new Coordenada(1,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 2000,   "Centro",     new Coordenada(2,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 3000,   "Centro",     new Coordenada(3,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 4000,   "Balvanera",  new Coordenada(4,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 5000,   "Balvanera",  new Coordenada(5,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 6000,   "Balvanera",  new Coordenada(6,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 7000,   "Balvanera",  new Coordenada(7,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 8000,   "La Boca",    new Coordenada(8,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 9000,   "La Boca",    new Coordenada(9,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 10000,  "La Boca",    new Coordenada(10,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 11000,  "La Boca",    new Coordenada(11,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 12000,  "Liniers",    new Coordenada(12,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 13000,  "Liniers",    new Coordenada(13,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 14000,  "Liniers",    new Coordenada(14,4))),
+    new Parada(colectivo160,new Direccion("Rivadavia", 15000,  "Liniers",    new Coordenada(15,4))))
 
-      baseDeTransportesConSusParadas.foreach((unTransporte: Transporte) =>
-        paradas+=(buscarParadaMasCercana(unaDireccion, unTransporte)))
-      paradas.toList
-    }
+  colectivo160.listaDeParadas_=(direccionesColectivo160)
+
+  var todosLosTransportes: List[Transporte] = List(subteB, colectivo24, colectivo160)
+  var todasLasDirecciones = List(
+    //Direciones Colectivo 24 y SubteB
+    new Direccion("Corrientes", 7000, "Villa Crespo", new Coordenada(0,7)),
+    new Direccion("Corrientes", 6500, "Villa Crespo", new Coordenada(0,6.5)),
+    new Direccion("Corrientes", 6000, "Villa Crespo", new Coordenada(0,6)),
+    new Direccion("Corrientes", 5500, "Villa Crespo", new Coordenada(0,5.5)),
+    new Direccion("Corrientes", 5000, "Villa Crespo", new Coordenada(0,5)),
+    new Direccion("Corrientes", 4500, "Almagro", new Coordenada(0,4.5)),
+    new Direccion("Corrientes", 4000, "Almagro", new Coordenada(0,4)),
+    new Direccion("Corrientes", 3500, "Almagro", new Coordenada(0,3.5)),
+    new Direccion("Corrientes", 3000, "Balvanera", new Coordenada(0,3)),
+    new Direccion("Corrientes", 2500, "Balvanera", new Coordenada(0,2.5)),
+    new Direccion("Corrientes", 2000, "Balvanera", new Coordenada(0,2)),
+    new Direccion("Corrientes", 1500, "San Nicolas", new Coordenada(0,1.5)),
+    new Direccion("Corrientes", 1000, "San Nicolas", new Coordenada(0,1)),
+    new Direccion("Corrientes", 500, "Centro", new Coordenada(0,0.5)),
+    new Direccion("Corrientes", 0, "Centro", new Coordenada(0,0)),
+    //Direciones Colectivo 160
+    new Direccion("Rivadavia", 0,      "Centro",     new Coordenada(0,4)),
+    new Direccion("Rivadavia", 500,    "Centro",     new Coordenada(0.5,4)),
+    new Direccion("Rivadavia", 1000,   "Centro",     new Coordenada(1,4)),
+    new Direccion("Rivadavia", 2000,   "Centro",     new Coordenada(2,4)),
+    new Direccion("Rivadavia", 3000,   "Centro",     new Coordenada(3,4)),
+    new Direccion("Rivadavia", 4000,   "Balvanera",  new Coordenada(4,4)),
+    new Direccion("Rivadavia", 5000,   "Balvanera",  new Coordenada(5,4)),
+    new Direccion("Rivadavia", 6000,   "Balvanera",  new Coordenada(6,4)),
+    new Direccion("Rivadavia", 7000,   "Balvanera",  new Coordenada(7,4)),
+    new Direccion("Rivadavia", 8000,   "La Boca",    new Coordenada(8,4)),
+    new Direccion("Rivadavia", 9000,   "La Boca",    new Coordenada(9,4)),
+    new Direccion("Rivadavia", 10000,  "La Boca",    new Coordenada(10,4)),
+    new Direccion("Rivadavia", 11000,  "La Boca",    new Coordenada(11,4)),
+    new Direccion("Rivadavia", 12000,  "Liniers",    new Coordenada(12,4)),
+    new Direccion("Rivadavia", 13000,  "Liniers",    new Coordenada(13,4)),
+    new Direccion("Rivadavia", 14000,  "Liniers",    new Coordenada(14,4)),
+    new Direccion("Rivadavia", 15000,  "Liniers",    new Coordenada(15,4))
+  )
+
   //def puedeCombinar(unTransporte: Transporte, otroTransporte: Transporte): Unit
 
   def getDistanciaRecorridaPorUnColectivo(unaDireccion: Direccion, otraDireccion: Direccion): Double =
@@ -71,7 +118,37 @@ object ModuloExterno {
     5
   }
 
-  def buscarParadaMasCercana(unaDireccion: Direccion, unTransporte: Transporte): Parada =
+  private def buscarDireccionMasCercana(direccionNombre: String, direccionAltura: Long): Direccion={
+    var minDist=Long.MaxValue
+    var dirMasCercana:Direccion=null
+    for(dir <- todasLasDirecciones){
+      if(dir.calle==direccionNombre && math.abs(dir.altura-direccionAltura)<minDist){
+        minDist=math.abs(dir.altura-direccionAltura)
+        dirMasCercana=dir
+      }
+    }
+    dirMasCercana
+  }
+
+
+  def buscarParadasMasCercanas(direccionNombre: String, direccionAltura: Long): List[(Double,Parada)] =
+  {
+    buscarParadasMasCercanas(buscarDireccionMasCercana(direccionNombre, direccionAltura))
+  }
+
+  def buscarParadasMasCercanas(unaDireccion: Direccion): List[(Double,Parada)] =
+  {
+    //var paradas = List[(Double,Parada)]()
+    var paradas = new ListBuffer[(Double,Parada)]
+    for(tranporte <- todosLosTransportes){
+      paradas+=buscarParadaMasCercana(unaDireccion, tranporte)
+    }
+    paradas.sortBy(_._1)
+    println(paradas)
+    paradas.toList
+  }
+
+  def buscarParadaMasCercana(unaDireccion: Direccion, unTransporte: Transporte): (Double,Parada) =
     {
       var paradaMasCercana: Parada = null
       var minDist : Double = Double.MaxValue
@@ -84,7 +161,7 @@ object ModuloExterno {
         }
       }
 
-      paradaMasCercana
+      (minDist,paradaMasCercana)
     }
 
 
