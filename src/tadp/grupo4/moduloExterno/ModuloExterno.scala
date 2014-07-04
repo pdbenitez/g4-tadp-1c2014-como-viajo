@@ -103,14 +103,14 @@ object ModuloExterno {
     {
       val c1 = unaDireccion.coordenada
       val c2 = otraDireccion.coordenada
-      math.pow(c1.x-c2.x,2)*math.pow(c1.x-c2.x,2) //Sin raiz cuadrada asi parace q tiene q recorrer mas
+      math.pow(c1.x-c2.y,2)+math.pow(c1.x-c2.y,2) //Sin raiz cuadrada asi parace q tiene q recorrer mas
     }
 
   def getDistanciaAPie(unaDireccion: Direccion, otraDireccion: Direccion): Double  =
     {
       val c1 = unaDireccion.coordenada
       val c2 = otraDireccion.coordenada
-      math.sqrt(math.pow(c1.x-c2.x,2)*math.pow(c1.x-c2.x,2))
+      math.sqrt(math.pow(c1.x-c2.x,2)+math.pow(c1.y-c2.y,2))
     }
 
   def getCantidadDeEstaciones(unaDireccion: Direccion, otraDireccion: Direccion): Int =
@@ -131,21 +131,19 @@ object ModuloExterno {
   }
 
 
-  def buscarParadasMasCercanas(direccionNombre: String, direccionAltura: Long): List[(Double,Parada)] =
+  def buscarParadasMasCercanas(direccionNombre: String, direccionAltura: Long, maxDist:Double = Double.MaxValue): List[(Double,Parada)] =
   {
-    buscarParadasMasCercanas(buscarDireccionMasCercana(direccionNombre, direccionAltura))
+    buscarParadasMasCercanas(buscarDireccionMasCercana(direccionNombre, direccionAltura), maxDist)
   }
 
-  def buscarParadasMasCercanas(unaDireccion: Direccion): List[(Double,Parada)] =
+  def buscarParadasMasCercanas(unaDireccion: Direccion, maxDist:Double): List[(Double,Parada)] =
   {
-    //var paradas = List[(Double,Parada)]()
     var paradas = new ListBuffer[(Double,Parada)]
     for(tranporte <- todosLosTransportes){
-      paradas+=buscarParadaMasCercana(unaDireccion, tranporte)
+      var parada = buscarParadaMasCercana(unaDireccion, tranporte)
+      if(parada._1<maxDist) paradas+=parada
     }
-    paradas.sortBy(_._1)
-    println(paradas)
-    paradas.toList
+    paradas.sortBy(-_._1).toList
   }
 
   def buscarParadaMasCercana(unaDireccion: Direccion, unTransporte: Transporte): (Double,Parada) =

@@ -9,7 +9,7 @@ class Viaje (var recorridos: List[Recorrido]){
     {
       var costoTotal: Double = 0
       for(unRecorrido<- recorridos){
-        costoTotal + unRecorrido.costo
+        costoTotal+= unRecorrido.costo
       }
       costoTotal
     }
@@ -18,7 +18,7 @@ class Viaje (var recorridos: List[Recorrido]){
     {
       var tiempoTotal: Double = 0
       for(unRecorrido<- recorridos){
-        tiempoTotal + unRecorrido.tiempo
+        tiempoTotal+= unRecorrido.tiempo
       }
       tiempoTotal
     }
