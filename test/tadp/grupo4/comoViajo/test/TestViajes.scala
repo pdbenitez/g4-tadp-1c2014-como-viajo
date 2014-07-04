@@ -1,25 +1,20 @@
 package tadp.grupo4.comoViajo.test
 
-import tadp.grupo4.comoViajo.BuscadorDeViajes
-import tadp.grupo4.comoViajo.CriterioMenorCosto
-import tadp.grupo4.comoViajo.CriterioMenorTiempo
-import tadp.grupo4.comoViajo.Direccion
-import tadp.grupo4.comoViajo.TarjetaTurismo
-import tadp.grupo4.comoViajo.Viaje
+import tadp.grupo4.comoViajo._
 import tadp.grupo4.moduloExterno.ModuloExterno
 import org.scalatest._
 
 class TestViajes extends FlatSpec with Matchers {
   //Aca solo van tests para ver q programamos bien nuestro modulo externo
 
-  var origen = new Direccion("Corrientes", 5000, "Villa Crespo")
-  var destino = new Direccion("Corrientes", 3000, "Villa Crespo")
+  var origen = new Direccion("Corrientes", 5000, "Villa Crespo", new Coordenada(0,5))
+  var destino = new Direccion("Corrientes", 3000, "Villa Crespo", new Coordenada(0,3))
   var tarjetaDescuento = new TarjetaTurismo //podria ser un setter!
   var criterioCosto = new CriterioMenorCosto
   var criterioTiempo = new CriterioMenorTiempo
   var viajesPosibles: List[Viaje] = null
 
-  var buscador = new BuscadorDeViajes(new ModuloExterno)
+  var buscador = new BuscadorDeViajes
 
   "El test" should "Cachear Excepcion" in{
     val s = "hi"

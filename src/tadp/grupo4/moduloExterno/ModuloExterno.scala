@@ -1,66 +1,46 @@
 package tadp.grupo4.moduloExterno
 
-import tadp.grupo4.comoViajo.Colectivo
-import tadp.grupo4.comoViajo.Direccion
-import tadp.grupo4.comoViajo.Parada
-import tadp.grupo4.comoViajo.Recorrido
-import tadp.grupo4.comoViajo.Subte
-import tadp.grupo4.comoViajo.Transporte
+import tadp.grupo4.comoViajo._
 import scala.collection.mutable.ListBuffer
 
-//En funcional esto es un Object (o sea, un singleton)
-class ModuloExterno {
+object ModuloExterno {
 
   var baseDeDirecciones: List[Recorrido] = Nil //ESTO ME SIRVE PARA ALGO?? ---> BORRAR
 
   var subteB: Transporte = new Subte("B")
 
   var paradasSubteB = List(
-    new Parada(subteB, new Direccion("Corrientes", 7000, "Villa Crespo")),
-    new Parada(subteB, new Direccion("Corrientes", 6500, "Villa Crespo")),
-    new Parada(subteB, new Direccion("Corrientes", 6000, "Villa Crespo")),
-    new Parada(subteB, new Direccion("Corrientes", 5500, "Villa Crespo")),
-    new Parada(subteB, new Direccion("Corrientes", 5000, "Villa Crespo")),
-    new Parada(subteB, new Direccion("Corrientes", 4500, "Almagro")),
-    new Parada(subteB, new Direccion("Corrientes", 4000, "Almagro")),
-    new Parada(subteB, new Direccion("Corrientes", 3500, "Almagro")),
-    new Parada(subteB, new Direccion("Corrientes", 3000, "Balvanera")),
-    new Parada(subteB, new Direccion("Corrientes", 2500, "Balvanera")),
-    new Parada(subteB, new Direccion("Corrientes", 2000, "Balvanera")),
-    new Parada(subteB, new Direccion("Corrientes", 1500, "San Nicolas")),
-    new Parada(subteB, new Direccion("Corrientes", 1000, "San Nicolas")),
-    new Parada(subteB, new Direccion("Corrientes", 500, "Centro")),
-    new Parada(subteB, new Direccion("Corrientes", 0, "Centro")))
+    new Parada(subteB, new Direccion("Corrientes", 7000, "Villa Crespo", new Coordenada(0,7))),
+    new Parada(subteB, new Direccion("Corrientes", 6500, "Villa Crespo", new Coordenada(0,6.5))),
+    new Parada(subteB, new Direccion("Corrientes", 6000, "Villa Crespo", new Coordenada(0,6))),
+    new Parada(subteB, new Direccion("Corrientes", 5500, "Villa Crespo", new Coordenada(0,5.5))),
+    new Parada(subteB, new Direccion("Corrientes", 5000, "Villa Crespo", new Coordenada(0,5))),
+    new Parada(subteB, new Direccion("Corrientes", 4500, "Almagro", new Coordenada(0,4.5))),
+    new Parada(subteB, new Direccion("Corrientes", 4000, "Almagro", new Coordenada(0,4))),
+    new Parada(subteB, new Direccion("Corrientes", 3500, "Almagro", new Coordenada(0,3.5))),
+    new Parada(subteB, new Direccion("Corrientes", 3000, "Balvanera", new Coordenada(0,3))),
+    new Parada(subteB, new Direccion("Corrientes", 2500, "Balvanera", new Coordenada(0,2.5))),
+    new Parada(subteB, new Direccion("Corrientes", 2000, "Balvanera", new Coordenada(0,2))),
+    new Parada(subteB, new Direccion("Corrientes", 1500, "San Nicolas", new Coordenada(0,1.5))),
+    new Parada(subteB, new Direccion("Corrientes", 1000, "San Nicolas", new Coordenada(0,1))),
+    new Parada(subteB, new Direccion("Corrientes", 500, "Centro", new Coordenada(0,0.5))),
+    new Parada(subteB, new Direccion("Corrientes", 0, "Centro", new Coordenada(0,0))))
 
   subteB.listaDeParadas_=(paradasSubteB)
 
   var colectivo24: Transporte = new Colectivo(24)
   
   var direccionesColectivo24= List(
-    new Parada(colectivo24,new Direccion("Corrientes", 5000, "Villa Crespo")),
-    new Parada(colectivo24,new Direccion("Corrientes", 4000, "Almagro")),
-    new Parada(colectivo24,new Direccion("Corrientes", 3000, "Balvanera")),
-    new Parada(colectivo24,new Direccion("Corrientes", 2000, "Balvanera")),
-    new Parada(colectivo24,new Direccion("Corrientes", 1000, "San Nicolas")))
+    new Parada(colectivo24,new Direccion("Corrientes", 5000, "Villa Crespo", new Coordenada(5,0))),
+    new Parada(colectivo24,new Direccion("Corrientes", 4000, "Almagro", new Coordenada(4,0))),
+    new Parada(colectivo24,new Direccion("Corrientes", 3000, "Balvanera", new Coordenada(3,0))),
+    new Parada(colectivo24,new Direccion("Corrientes", 2000, "Balvanera", new Coordenada(2,0))),
+    new Parada(colectivo24,new Direccion("Corrientes", 1000, "San Nicolas", new Coordenada(1,0))))
 
   
   colectivo24.listaDeParadas_=(direccionesColectivo24)
 
   var baseDeTransportesConSusParadas: List[Transporte] = List(subteB, colectivo24)
-
-  baseDeDirecciones.::(
-    new Recorrido(
-      new Direccion("Corrientes", 6000, "Villa Crespo"),
-      new Direccion("Corrientes", 2000, "Villa Crespo"),
-      new Subte("B"))).::(
-      new Recorrido(
-        new Direccion("Corrientes", 6000, "Villa Crespo"),
-        new Direccion("Corrientes", 2000, "Villa Crespo"),
-        new Colectivo(24))).::(
-        new Recorrido(
-          new Direccion("Rivadavia 11500", 3000, "Liniers"),
-          new Direccion("Corrientes", 200, "Centro"),
-          new Colectivo(24)))
 
   def getTransportesQuePasanCercaDe(unaDireccion: Direccion): List[Parada] =
     {
@@ -72,20 +52,24 @@ class ModuloExterno {
     }
   //def puedeCombinar(unTransporte: Transporte, otroTransporte: Transporte): Unit
 
-  def getDistanciaRecorridaPorUnColectivo(unaDireccion: Direccion, otraDireccion: Direccion, unCOlectivo: Colectivo): Int =
+  def getDistanciaRecorridaPorUnColectivo(unaDireccion: Direccion, otraDireccion: Direccion): Double =
     {
-      Math.abs(unaDireccion.altura - otraDireccion.altura)
+      val c1 = unaDireccion.coordenada
+      val c2 = otraDireccion.coordenada
+      math.pow(c1.x-c2.x,2)*math.pow(c1.x-c2.x,2) //Sin raiz cuadrada asi parace q tiene q recorrer mas
     }
 
-  def getDistanciaAPie(unaDireccion: Direccion, otraDireccion: Direccion): Int =
+  def getDistanciaAPie(unaDireccion: Direccion, otraDireccion: Direccion): Double  =
     {
-      Math.abs(unaDireccion.altura - otraDireccion.altura)
+      val c1 = unaDireccion.coordenada
+      val c2 = otraDireccion.coordenada
+      math.sqrt(math.pow(c1.x-c2.x,2)*math.pow(c1.x-c2.x,2))
     }
 
   def getCantidadDeEstaciones(unaDireccion: Direccion, otraDireccion: Direccion): Int =
-    {
-      5
-    }
+  {
+    5
+  }
 
   def buscarParadaMasCercana(unaDireccion: Direccion, unTransporte: Transporte): Parada =
     {

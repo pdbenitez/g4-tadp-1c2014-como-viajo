@@ -1,5 +1,7 @@
 package tadp.grupo4.comoViajo
 
+import tadp.grupo4.moduloExterno.ModuloExterno
+
 class Colectivo(linea: Int) extends Transporte {
 
   val numeroColectivo = linea
@@ -16,9 +18,9 @@ class Colectivo(linea: Int) extends Transporte {
 
   def getPrecioEnBaseADistancia(unaParada: Parada, otraParada: Parada): Double =
     {
-      var distancia = 13
-      //  this.moduloExterno.getDistanciaEntreColectivos(unaDireccion, this, this) / 1000
-      if (distancia < 3) {
+      val distancia = ModuloExterno.getDistanciaRecorridaPorUnColectivo(unaParada.direccion, otraParada.direccion)
+      //Aca va pattern matching de funcional
+      if (distancia <= 3) {
         2.50
       } else {
         if (distancia <= 6) {
