@@ -13,7 +13,9 @@ class TestsTiemposDeViaje extends FlatSpec with Matchers {
 
   }
   it should "Obtener tiempo tren SIN combinacion" in{
-
+    val viajes = BuscadorDeViajes.obtenerViajes("Corrientes",6300, "San Nicolas", 4200)
+    val viajeAAnalizar= viajes.head
+    viajeAAnalizar.getTiempo should be(15)
   }
   it should "Obtener tiempo tren CON combinacion" in{
 
@@ -22,7 +24,9 @@ class TestsTiemposDeViaje extends FlatSpec with Matchers {
 
   }
   it should "Obtener tiempo colectivo SIN combinacion" in{
-
+    val viajes = BuscadorDeViajes.obtenerViajes("Rivadavia", 15100,"Rivadavia",10100)
+    val viajeAAnalizar= viajes.head
+    viajeAAnalizar.getTiempo should be(20)
   }
   it should "Obtener tiempo colectivo CON combinacion (Independiente de con quien)" in{
 
