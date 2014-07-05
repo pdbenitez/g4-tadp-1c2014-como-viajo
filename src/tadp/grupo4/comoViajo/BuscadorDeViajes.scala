@@ -59,19 +59,4 @@ object BuscadorDeViajes {
 
     lstViajes.asScala.toList
   }
-
-  def obtenerParadasRecorridas(viaje: Viaje):List[Parada]={
-    var paradas = new ListBuffer[Parada]
-    var flag = 0
-    for(recorrido <-viaje.recorridos) {
-      val origen = recorrido.orig
-      val destino = recorrido.dest
-
-      for(parada<-recorrido.trans.listaDeParadas){
-        if(parada.eq(origen) || parada.eq(origen)) flag+=1
-        if(flag==1) paradas+=parada
-      }
-    }
-    paradas.toList
-  }
 }

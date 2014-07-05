@@ -2,7 +2,16 @@ package tadp.grupo4.comoViajo
 
 import tadp.grupo4.moduloExterno.ModuloExterno
 
+import scala.collection.mutable.ListBuffer
+
 class Viaje (var recorridos: List[Recorrido]){
+
+  def obtenerParadasRecorridas:List[Parada] = {
+    var paradas = new ListBuffer[Parada]
+    for(recorrido<-recorridos) paradas++=recorrido.trans.obtenerParadasRecorridas(recorrido.orig, recorrido.dest)
+    paradas.toList
+  }
+
   def getCosto(tarjeta :Tarjeta = TarjetaSinDescuento): Double =
     {
       var costoTotal: Double = 0

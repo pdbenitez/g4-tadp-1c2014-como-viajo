@@ -13,8 +13,7 @@ class Tren(val ramal: String, empresa:Empresa) extends Transporte {
 
   def getPrecioEnBaseAEstaciones(unaParada: Parada, otraParada: Parada): Double =
     {
-      var cantEstaciones = 123 
-        //this.moduloExterno.getCantidadDeEstaciones(unaDireccion, otraDireccion)
+      val cantEstaciones = 255
       //En funcional esto va con pattern matching
       if (cantEstaciones <= 5) {
         2.0
