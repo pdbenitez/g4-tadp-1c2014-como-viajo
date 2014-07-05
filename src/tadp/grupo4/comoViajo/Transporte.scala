@@ -10,4 +10,8 @@ trait Transporte {
   def getTiempo(unaDireccion: Parada, otraDireccion: Parada): Double
   def getCosto(unaDireccion: Parada, otraDireccion: Parada): Double
 
+  def eq(otroTransporte :Transporte){
+    //TODO: Cambiar por un ID
+    this==otroTransporte
+  }
 }

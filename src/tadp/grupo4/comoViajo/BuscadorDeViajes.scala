@@ -14,7 +14,7 @@ object BuscadorDeViajes {
     val paradasOrigen = ModuloExterno.buscarParadasMasCercanas(origenNombre, origenAltura, maxDistCaminar)
     val paradasDestino = ModuloExterno.buscarParadasMasCercanas(destinoNombre, destinoAltura, maxDistCaminar)
 
-    var viajesSinCombinacion= new ListBuffer[Viaje]
+    val viajesSinCombinacion= new ListBuffer[Viaje]
 
     for(paradaOrigen<-paradasOrigen){
       for(paradaDestino<-paradasDestino){
@@ -25,18 +25,22 @@ object BuscadorDeViajes {
       }
     }
 
-//    var viajesConCombinacion= new ListBuffer[Viaje]
-//
-//    for(paradaOrigen<-paradasOrigen){
-//      for(paradaDestino<-paradasDestino){
-//
-//          val recorridos = List(new Recorrido(paradaOrigen._2, paradaDestino._2, paradaOrigen._2.transporte))
-//          viajesSinCombinacion+=new Viaje(recorridos)
-//
-//      }
-//    }
+    val viajesConCombinacion= new ListBuffer[Viaje]
 
-    var lstViajes = viajesSinCombinacion.asJava
+    for(pOrigen<-paradasOrigen){
+      for(pDestino<-paradasDestino) {
+        for(pOrigenIntermedia<-pOrigen._2.transporte.listaDeParadas){
+          for(paradaDestinoIntermedia<-pDestino._2.transporte.listaDeParadas){
+            if(ModuloExterno.getDistanciaAPie(pOrigenIntermedia.direccion, paradaDestinoIntermedia.direccion)<maxDistCaminar){
+              val recorridos = List(new Recorrido(pOrigen._2, pOrigenIntermedia, pOrigen._2.transporte), new Recorrido(paradaDestinoIntermedia, pDestino._2, pOrigen._2.transporte))
+              viajesSinCombinacion+=new Viaje(recorridos)
+            }
+          }
+        }
+      }
+    }
+
+    var lstViajes = (viajesSinCombinacion++viajesConCombinacion).asJava
     criterio match{
       case CriterioBusqueda.Costo => Collections.sort(lstViajes, new Comparator[Viaje](){
         def compare(v1 :Viaje, v2 :Viaje):Int={

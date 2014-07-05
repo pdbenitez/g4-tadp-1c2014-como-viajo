@@ -8,11 +8,16 @@ import tadp.grupo4.comoViajo.{Subte, BuscadorDeViajes}
  */
 class TestsCostos extends FlatSpec with Matchers {
   it should "Obtener costo subte SIN combinacion" in{
-    var viajes = BuscadorDeViajes.obtenerViajes("Corrientes",7500, "Corrientes",6100)
+    val viajes = BuscadorDeViajes.obtenerViajes("Corrientes",7500, "Corrientes",6100)
     viajes.head.recorridos.head.trans shouldBe a [Subte]
+    viajes.head.getCosto should be(4.5)
   }
   it should "Obtener costo subte CON combinacion" in{
-
+    val viajes = BuscadorDeViajes.obtenerViajes("Esmeralda",600, "Corrientes",7000)
+    viajes.head.recorridos.head.trans shouldBe a [Subte]
+    viajes.head.recorridos.last.trans shouldBe a [Subte]
+    viajes.head.recorridos should have size 2
+    viajes.head.getCosto should be (4.5)
   }
   it should "Obtener costo tren 5 estaciones" in{
 
