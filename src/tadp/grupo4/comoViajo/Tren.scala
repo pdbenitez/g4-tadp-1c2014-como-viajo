@@ -1,6 +1,6 @@
 package tadp.grupo4.comoViajo
 
-class Tren(val ramal: String) extends Transporte {
+class Tren(val ramal: String, empresa:Empresa) extends Transporte {
 
   def getTiempo(unaParada: Parada, otraParada: Parada): Double =
     {

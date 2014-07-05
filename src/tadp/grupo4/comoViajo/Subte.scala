@@ -1,6 +1,6 @@
 package tadp.grupo4.comoViajo
 
-class Subte(linea: String) extends Transporte {
+class Subte(linea: String, empresa: Empresa) extends Transporte {
 
   val lineaSubte = linea
 
