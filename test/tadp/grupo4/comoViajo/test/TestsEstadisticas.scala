@@ -2,6 +2,7 @@ package tadp.grupo4.comoViajo.test
 
 import org.scalatest.{BeforeAndAfter, Matchers, FlatSpec}
 import tadp.grupo4.comoViajo._
+import tadp.grupo4.moduloExterno.ModuloExterno
 
 /**
  * Created by martin on 03/07/14.
@@ -13,9 +14,34 @@ class TestsEstadisticas extends FlatSpec with Matchers with BeforeAndAfter{
 //  Porcentaje de utilizacion (cantidad de viajes)
 //  Facturacion total.
 
+  var tablaCostos = new TablaPrecios {
+    override def getPrecio(cantParadas: Int): Double = {
+      //En funcional esto va con pattern matching
+      if (cantParadas <= 5) {
+        2.0
+      } else {
+        if (cantParadas <= 8) {
+          3.5
+        } else
+          4.75
+      }
+    }
+  }
+
   before{
     BuscadorDeViajes.confirmarViaje(BuscadorDeViajes.obtenerViajes("Corrientes",7500, "Corrientes",6100).head)
     BuscadorDeViajes.confirmarViaje(BuscadorDeViajes.obtenerViajes("Esmeralda",600, "Corrientes",7000).head)
+
+    BuscadorDeViajes.confirmarViaje(BuscadorDeViajes.obtenerViajes("Brasil",1100, "Irigoyen",500).head)
+    BuscadorDeViajes.confirmarViaje(BuscadorDeViajes.obtenerViajes("Esmeralda",600, "Corrientes",7000).head)
+    BuscadorDeViajes.confirmarViaje(BuscadorDeViajes.obtenerViajes("Corrientes",7500, "Corrientes",6100).head)
+    BuscadorDeViajes.confirmarViaje(BuscadorDeViajes.obtenerViajes("Esmeralda",600, "Corrientes",7000).head)
+    BuscadorDeViajes.confirmarViaje(BuscadorDeViajes.obtenerViajes("Corrientes",7500, "Corrientes",6100).head)
+    BuscadorDeViajes.confirmarViaje(BuscadorDeViajes.obtenerViajes("Esmeralda",600, "Corrientes",7000).head)
+    BuscadorDeViajes.confirmarViaje(BuscadorDeViajes.obtenerViajes("Corrientes",7500, "Corrientes",6100).head)
+    BuscadorDeViajes.confirmarViaje(BuscadorDeViajes.obtenerViajes("Esmeralda",600, "Corrientes",7000).head)
+
+
   }
 
   after{
@@ -27,7 +53,7 @@ class TestsEstadisticas extends FlatSpec with Matchers with BeforeAndAfter{
     println(Estadistica.tiempoPromedio())
   }
   it should "Agrego filtro tipo transporte que no es Subte y filtro todo" in {
-    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Roca",new Empresa("UGOFE"))))
+    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Roca",new Empresa("UGOFE"),tablaCostos)))
     println(Estadistica.tiempoPromedio())
   }
   it should "Agrego filtro tipo Zona y no filtro nada" in {
