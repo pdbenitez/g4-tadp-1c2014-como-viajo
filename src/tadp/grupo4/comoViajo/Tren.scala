@@ -4,8 +4,10 @@ class Tren(val ramal: String, var empresa:Empresa) extends Transporte {
 
   def getTiempo(unaParada: Parada, otraParada: Parada): Double =
     {
-      5
+      val paradasIntermedias:List[Parada]=obtenerParadasRecorridas(unaParada,otraParada)
+      (paradasIntermedias.size-1)*3 //3 minutos por estacion de tren
     }
+
   def getCosto(unaParada: Parada, otraParada: Parada): Double =
     {
       this.getPrecioEnBaseAEstaciones(unaParada, otraParada)
