@@ -225,12 +225,7 @@ object ModuloExterno {
       math.sqrt(math.pow(c1.x-c2.x,2)+math.pow(c1.y-c2.y,2))
     }
 
-  def getCantidadDeEstaciones(unaDireccion: Direccion, otraDireccion: Direccion): Int =
-  {
-    5
-  }
-
-  private def buscarDireccionMasCercana(direccionNombre: String, direccionAltura: Long): Direccion={
+ private def buscarDireccionMasCercana(direccionNombre: String, direccionAltura: Long): Direccion={
     var minDist=Long.MaxValue
     var dirMasCercana:Direccion=null
     for(dir <- todasLasDirecciones){

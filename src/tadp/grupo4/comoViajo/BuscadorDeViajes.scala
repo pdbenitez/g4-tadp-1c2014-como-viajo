@@ -10,7 +10,10 @@ import scala.collection.mutable.ListBuffer
 
 object BuscadorDeViajes {
 
+  var viajesHistoricos = new ListBuffer[Viaje]
   def obtenerViajes(origenNombre: String,origenAltura: Long, destinoNombre: String,destinoAltura: Long, maxDistCaminar: Double = 0.5, criterio: CriterioBusqueda = CriterioBusqueda.Tiempo): List[Viaje] ={
+
+
     val paradasOrigen = ModuloExterno.buscarParadasMasCercanas(origenNombre, origenAltura, maxDistCaminar)
     val paradasDestino = ModuloExterno.buscarParadasMasCercanas(destinoNombre, destinoAltura, maxDistCaminar)
 
@@ -59,4 +62,12 @@ object BuscadorDeViajes {
 
     lstViajes.asScala.toList
   }
+
+  def confirmarViaje(unViaje : Viaje) : Unit = {
+    viajesHistoricos+=unViaje
+  }
+  def limpiarViajes() : Unit = {
+    viajesHistoricos.clear()
+  }
+
 }
