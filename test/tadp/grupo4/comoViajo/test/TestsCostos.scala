@@ -19,19 +19,27 @@ class TestsCostos extends FlatSpec with Matchers {
     viajes.head.recorridos should have size 2
     viajes.head.getCosto() should be (4.5)
   }
-  it should "Obtener costo tren 5 estaciones" in{
-//    val viajes = BuscadorDeViajes.obtenerViajes("San Nicolas",4320, "Terrada",3550)
-//    viajes.head.recorridos.head.trans shouldBe a [Tren]
-//    viajes.head.getCosto() should be(4.5)
+  it should "Obtener costo tren 3 estaciones" in{
+    val viajes = BuscadorDeViajes.obtenerViajes("San Nicolas",4320, "Terrada",3550)
+    viajes.head.recorridos.head.trans shouldBe a [Tren]
+    viajes.head.getCosto() should be(3)
   }
-  it should "Obtener costo tren 8 estaciones" in{
-
+  it should "Obtener costo tren 4 estaciones" in{
+    val viajes = BuscadorDeViajes.obtenerViajes("San Nicolas",4320, "Elcano",4500)
+    viajes.head.recorridos.head.trans shouldBe a [Tren]
+    viajes.head.getCosto() should be(4.5)
   }
-  it should "Obtener costo tren mas de 8 estaciones" in{
-
+  it should "Obtener costo tren mas de 5 estaciones" in{
+    val viajes = BuscadorDeViajes.obtenerViajes("San Nicolas",4320, "Corrientes",6600)
+    viajes.head.recorridos.head.trans shouldBe a [Tren]
+    viajes.head.getCosto() should be(5.75)
   }
   it should "Obtener costo tren combinacion" in{
+    val viajes = BuscadorDeViajes.obtenerViajes("Terrada", 3600, "San Lejano", 20)
+    viajes.head.recorridos.head.trans shouldBe a [Tren]
+    viajes.head.recorridos should have size 2
 
+    viajes.head.getCosto() should be(6)
   }
   it should "Obtener costo colectivo 3 Km" in{
     val viajes = BuscadorDeViajes.obtenerViajes("Rivadavia",15040, "Rivadavia",14500)

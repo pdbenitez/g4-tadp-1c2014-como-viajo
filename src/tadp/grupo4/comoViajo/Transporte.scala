@@ -17,7 +17,10 @@ trait Transporte {
     var paradas = new ListBuffer[Parada]
     var flag = false
     for(parada<-listaDeParadas){
-      if(parada.eq(origen) || parada.eq(destino)) flag= !flag;
+      if(parada.eq(origen) || parada.eq(destino)) {
+        if(flag) paradas+=parada
+        flag= !flag
+      }
       if(flag) paradas+=parada
     }
     paradas.toList
