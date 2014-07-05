@@ -1,16 +1,19 @@
 package tadp.grupo4.comoViajo.test
 
-import org.scalatest.{Matchers, FlatSpec}
+import org.scalatest.{BeforeAndAfter, Matchers, FlatSpec}
 import tadp.grupo4.comoViajo.{Colectivo, Subte, BuscadorDeViajes}
 
 /**
  * Created by martin on 03/07/14.
  */
 class TestsCostos extends FlatSpec with Matchers {
-  it should "Obtener costo subte SIN combinacion" in{
+
+
+    it should "Obtener costo subte SIN combinacion" in{
     val viajes = BuscadorDeViajes.obtenerViajes("Corrientes",7500, "Corrientes",6100)
     viajes.head.recorridos.head.trans shouldBe a [Subte]
     viajes.head.getCosto should be(4.5)
+
   }
   it should "Obtener costo subte CON combinacion" in{
     val viajes = BuscadorDeViajes.obtenerViajes("Esmeralda",600, "Corrientes",7000)

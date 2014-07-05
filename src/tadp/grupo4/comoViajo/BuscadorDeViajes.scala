@@ -10,6 +10,8 @@ import scala.collection.mutable.ListBuffer
 
 object BuscadorDeViajes {
 
+  var viajesHistoricos = new ListBuffer[Viaje]
+
   def obtenerViajes(origenNombre: String,origenAltura: Long, destinoNombre: String,destinoAltura: Long, maxDistCaminar: Double = 0.1, criterio: CriterioBusqueda = CriterioBusqueda.Tiempo): List[Viaje] ={
     val paradasOrigen = ModuloExterno.buscarParadasMasCercanas(origenNombre, origenAltura, maxDistCaminar)
     val paradasDestino = ModuloExterno.buscarParadasMasCercanas(destinoNombre, destinoAltura, maxDistCaminar)
@@ -62,4 +64,12 @@ object BuscadorDeViajes {
     //TODO: tambien faltaria ordenar por el criterio de viaje, no se como esta pero podria ser un enum perfectamnete
     //TODO: tambien faltaria pasar la tarjeta tal y como dijo Jorge. La tarjeta puede ser un parametro opcional (Scala acepta parametros opcionales)
   }
+
+  def confirmarViaje(unViaje : Viaje) : Unit = {
+    viajesHistoricos+=unViaje
+  }
+  def limpiarViajes() : Unit = {
+    viajesHistoricos.clear()
+  }
+
 }
