@@ -7,7 +7,7 @@ import org.scalatest.{Matchers, FlatSpec}
  */
 class TestsTiemposDeViaje extends FlatSpec with Matchers {
   it should "Obtener tiempo subte SIN combinacion" in{
-
+    
   }
   it should "Obtener tiempo subte CON combinacion" in{
 
