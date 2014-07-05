@@ -2,7 +2,7 @@ package tadp.grupo4.comoViajo
 
 import tadp.grupo4.moduloExterno.ModuloExterno
 
-class Colectivo(linea: Int, empresa:Empresa) extends Transporte {
+class Colectivo(linea: Int, var empresa:Empresa) extends Transporte {
 
   val numeroColectivo = linea
 
