@@ -13,9 +13,10 @@ class Tren(val ramal: String, var empresa:Empresa) extends Transporte {
       this.getPrecioEnBaseAEstaciones(unaParada, otraParada)
     }
 
-  def getPrecioEnBaseAEstaciones(unaParada: Parada, otraParada: Parada): Double =
+  def getPrecioEnBaseAEstaciones(origen: Parada, destino: Parada): Double =
     {
-      val cantEstaciones = 255
+      val cantEstaciones = obtenerParadasRecorridas(origen, destino).size
+
       //En funcional esto va con pattern matching
       if (cantEstaciones <= 5) {
         2.0
