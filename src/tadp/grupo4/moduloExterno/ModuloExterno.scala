@@ -4,7 +4,7 @@ import tadp.grupo4.comoViajo._
 import scala.collection.mutable.ListBuffer
 
 object ModuloExterno {
-  var subteB: Transporte = new Subte("B")
+  var subteB: Transporte = new Subte("B", new Empresa("Metrovias"))
 
   var paradasSubteB = List(
     new Parada(subteB, new Direccion("Corrientes", 7000, "Villa Crespo",  new Coordenada(7,1))),
@@ -25,7 +25,7 @@ object ModuloExterno {
 
   subteB.listaDeParadas_=(paradasSubteB)
 
-  var subteC: Transporte = new Subte("B")
+  var subteC: Transporte = new Subte("B", new Empresa("Metrovias"))
   var paradasSubteC = List(
     new Parada(subteC, new Direccion("Brasil", 1100, "Constitucion", new Coordenada(1.6,5.5))),
     new Parada(subteC, new Direccion("Irigoyen", 1100, "Monserrat", new Coordenada(1.5,5))),
@@ -36,14 +36,14 @@ object ModuloExterno {
     new Parada(subteC, new Direccion("Esmeralda", 500, "Almagro", new Coordenada(0,0))))
   subteC.listaDeParadas_=(paradasSubteC)
 
-  var trenRoca: Transporte = new Tren("Roca")
+  var trenRoca: Transporte = new Tren("Roca", new Empresa("UGOFE"))
   var paradasTrenRoca = List (
     new Parada(trenRoca, new Direccion("Brasil", 1100, "Constitucion", new Coordenada(1.6,5.5))),
     new Parada(trenRoca, new Direccion("Villarino", 2300, "Barracas", new Coordenada(1.5,7.6)))
   )
   trenRoca.listaDeParadas_=(paradasTrenRoca)
 
-  var trenUrquiza: Transporte = new Tren("Urquiza")
+  var trenUrquiza: Transporte = new Tren("Urquiza", new Empresa("Metrovias"))
   var paradasTrenUrquiza = List (
     new Parada(trenUrquiza, new Direccion("Corrientes", 6500, "Villa Crespo",  new Coordenada(6.5,1))),
     new Parada(trenUrquiza, new Direccion("Elcano", 4600, "Paternal",  new Coordenada(7.5,1.3))),
@@ -54,7 +54,7 @@ object ModuloExterno {
   )
   trenUrquiza.listaDeParadas_=(paradasTrenUrquiza)
 
-  var trenSarmiento: Transporte = new Tren("Sarmiento")
+  var trenSarmiento: Transporte = new Tren("Sarmiento", new Empresa("SOFSE"))
   var paradasTrenSarmiento = List (
     new Parada(trenSarmiento, new Direccion("Pueyrredon", 100, "Balvanera", new Coordenada(3.7,4))),
     new Parada(trenSarmiento, new Direccion("Nicolas Repetto", 200, "Balvanera", new Coordenada(6.4,3.7))),
@@ -65,7 +65,7 @@ object ModuloExterno {
   )
   trenSarmiento.listaDeParadas_=(paradasTrenSarmiento)
 
-  var colectivo24: Transporte = new Colectivo(24)
+  var colectivo24: Transporte = new Colectivo(24, new Empresa("Empresarios Trans. Aut. de Pasajeros S.A.C.I.F."))
   var direccionesColectivo24= List(
     new Parada(colectivo24,new Direccion("Corrientes", 5000, "Villa Crespo", new Coordenada(5,0))),
     new Parada(colectivo24,new Direccion("Corrientes", 4000, "Almagro", new Coordenada(4,0))),
@@ -75,7 +75,7 @@ object ModuloExterno {
 
   colectivo24.listaDeParadas_=(direccionesColectivo24)
 
-  var colectivo160: Transporte = new Colectivo(24)
+  var colectivo160: Transporte = new Colectivo(160, new Empresa("Micro Omnibus Sur S.A."))
 
   var direccionesColectivo160= List(
     new Parada(colectivo160,new Direccion("Rivadavia", 0,      "Centro",     new Coordenada(0,4))),

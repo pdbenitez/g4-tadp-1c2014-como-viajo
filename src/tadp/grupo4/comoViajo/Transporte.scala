@@ -8,6 +8,7 @@ trait Transporte {
 
   //val moduloExterno: ModuloExterno = Nil
   var listaDeParadas: List[Parada] = Nil
+  var empresa:Empresa
 
   def getTiempo(unaDireccion: Parada, otraDireccion: Parada): Double
   def getCosto(unaDireccion: Parada, otraDireccion: Parada): Double

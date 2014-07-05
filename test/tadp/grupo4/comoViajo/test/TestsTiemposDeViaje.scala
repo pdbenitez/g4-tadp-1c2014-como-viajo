@@ -24,9 +24,6 @@ class TestsTiemposDeViaje extends FlatSpec with Matchers {
   it should "Obtener tiempo colectivo SIN combinacion" in{
 
   }
-  it should "Obtener tiempo colectivo SIN combinacion" in{
-
-  }
   it should "Obtener tiempo colectivo CON combinacion (Independiente de con quien)" in{
 
   }
