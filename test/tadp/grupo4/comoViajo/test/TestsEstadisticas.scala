@@ -23,10 +23,12 @@ class TestsEstadisticas extends FlatSpec with Matchers with BeforeAndAfter{
   }
 
   it should "Agrego filtro tipo transporte Subte y no filtro nada" in {
-    Estadistica.addFiltro(new FiltroTipoTransporte(new Subte("B")))
+    Estadistica.addFiltro(new FiltroTipoTransporte(new Subte("B",new Empresa("Metrovias"))))
+    println(Estadistica.tiempoPromedio())
   }
   it should "Agrego filtro tipo transporte que no es Subte y filtro todo" in {
-    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Mitre")))
+    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Roca",new Empresa("UGOFE"))))
+    println(Estadistica.tiempoPromedio())
   }
   it should "Agrego filtro tipo Zona y no filtro nada" in {
     Estadistica.addFiltro(new FiltroZona("Villa Crespo"))
