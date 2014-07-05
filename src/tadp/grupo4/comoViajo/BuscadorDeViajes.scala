@@ -24,6 +24,18 @@ object BuscadorDeViajes {
         }
       }
     }
+
+//    var viajesConCombinacion= new ListBuffer[Viaje]
+//
+//    for(paradaOrigen<-paradasOrigen){
+//      for(paradaDestino<-paradasDestino){
+//
+//          val recorridos = List(new Recorrido(paradaOrigen._2, paradaDestino._2, paradaOrigen._2.transporte))
+//          viajesSinCombinacion+=new Viaje(recorridos)
+//
+//      }
+//    }
+
     var lstViajes = viajesSinCombinacion.asJava
     criterio match{
       case CriterioBusqueda.Costo => Collections.sort(lstViajes, new Comparator[Viaje](){

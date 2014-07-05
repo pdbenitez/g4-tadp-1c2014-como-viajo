@@ -10,8 +10,6 @@ class TestViajes extends FlatSpec with Matchers {
   var origen = new Direccion("Corrientes", 5000, "Villa Crespo", new Coordenada(0,5))
   var destino = new Direccion("Corrientes", 3000, "Villa Crespo", new Coordenada(0,3))
   var tarjetaDescuento = new TarjetaTurismo //podria ser un setter!
-  var criterioCosto = new CriterioMenorCosto
-  var criterioTiempo = new CriterioMenorTiempo
   var viajesPosibles: List[Viaje] = null
 
   "El test" should "Cachear Excepcion" in{
