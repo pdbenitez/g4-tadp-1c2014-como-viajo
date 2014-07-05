@@ -3,8 +3,6 @@ package tadp.grupo4.comoViajo
 import scala.collection.mutable.ListBuffer
 
 class TarjetaTurismo (val zonaDescuento:String = "Centro") extends Tarjeta {
-  val porcentajeDescuento = 10
-
   def getDescuento(viaje :Viaje): Double =
   {
     var paradas = new ListBuffer[Parada]
