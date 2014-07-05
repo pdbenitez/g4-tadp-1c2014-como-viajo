@@ -118,7 +118,7 @@ object ModuloExterno {
     {
       val c1 = unaDireccion.coordenada
       val c2 = otraDireccion.coordenada
-      math.pow(c1.x-c2.y,2)+math.pow(c1.x-c2.y,2) //Sin raiz cuadrada asi parace q tiene q recorrer mas
+      math.abs(c1.x-c2.x)+math.abs(c1.y-c2.y) //Sin raiz cuadrada asi parace q tiene q recorrer mas
     }
 
   def getDistanciaAPie(unaDireccion: Direccion, otraDireccion: Direccion): Double  =
