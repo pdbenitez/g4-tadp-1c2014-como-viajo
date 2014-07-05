@@ -31,20 +31,20 @@ object BuscadorDeViajes {
     val viajesConCombinacion= new ListBuffer[Viaje]
 
     for(pOrigen<-paradasOrigen){
-      for(pDestino<-paradasDestino) {
+    for(pDestino<-paradasDestino) {
         if(!pOrigen._2.transporte.eq(pDestino._2.transporte)){
           for(pOrigenIntermedia<-pOrigen._2.transporte.listaDeParadas){
-            for(paradaDestinoIntermedia<-pDestino._2.transporte.listaDeParadas){
+          for(paradaDestinoIntermedia<-pDestino._2.transporte.listaDeParadas){
               if(ModuloExterno.getDistanciaAPie(pOrigenIntermedia.direccion, paradaDestinoIntermedia.direccion)<maxDistCaminar){
-                if((!pOrigen._2.eq(pOrigenIntermedia)) && (!paradaDestinoIntermedia.eq(pDestino._2))){
-                  val recorridos = List(new Recorrido(pOrigen._2, pOrigenIntermedia, pOrigen._2.transporte), new Recorrido(paradaDestinoIntermedia, pDestino._2, pOrigen._2.transporte))
+              if((!pOrigen._2.eq(pOrigenIntermedia)) && (!paradaDestinoIntermedia.eq(pDestino._2))){
+                  val recorridos = List(new Recorrido(paradaDestinoIntermedia, pDestino._2, pDestino._2.transporte),new Recorrido(pOrigen._2, pOrigenIntermedia, pOrigen._2.transporte))
                   viajesConCombinacion+=new Viaje(recorridos)
-                }
               }
-            }
+              }
+          }
           }
         }
-      }
+    }
     }
 
     var lstViajes = (viajesSinCombinacion++viajesConCombinacion).asJava

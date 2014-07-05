@@ -19,7 +19,7 @@ class TestsCostos extends FlatSpec with Matchers {
 
   }
   it should "Obtener costo subte CON combinacion" in{
-    val viajes = BuscadorDeViajes.obtenerViajes("Esmeralda",600, "Corrientes",7000)
+    val viajes = BuscadorDeViajes.obtenerViajes("Esmeralda",400, "Corrientes",6300)
     viajes.head.recorridos.head.trans shouldBe a [Subte]
     viajes.head.recorridos.last.trans shouldBe a [Subte]
     viajes.head.recorridos should have size 2
