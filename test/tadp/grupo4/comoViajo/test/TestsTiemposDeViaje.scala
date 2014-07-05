@@ -9,8 +9,10 @@ class TestsTiemposDeViaje extends FlatSpec with Matchers {
     val viajeAAnalizar= viajes.head
     viajeAAnalizar.getTiempo should be(4)
   }
-  it should "Obtener tiempo subte CON combinacion" in{
-
+  it should "Obtener tiempo subte CON combinacion a subte" in{
+    val viajes = BuscadorDeViajes.obtenerViajes("Corrientes",6300, "Esmeralda", 400)
+    val viajeAAnalizar= viajes.head
+    viajeAAnalizar.getTiempo should be(28)
   }
   it should "Obtener tiempo tren SIN combinacion" in{
     val viajes = BuscadorDeViajes.obtenerViajes("Corrientes",6300, "San Nicolas", 4200)

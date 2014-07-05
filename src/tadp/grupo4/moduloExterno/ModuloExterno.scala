@@ -25,7 +25,7 @@ object ModuloExterno {
 
   subteB.listaDeParadas_=(paradasSubteB)
 
-  var subteC: Transporte = new Subte("B", new Empresa("Metrovias"))
+  var subteC: Transporte = new Subte("C", new Empresa("Metrovias"))
   var paradasSubteC = List(
     new Parada(subteC, new Direccion("Brasil", 1100, "Constitucion", new Coordenada(1.6,5.5))),
     new Parada(subteC, new Direccion("Irigoyen", 1100, "Monserrat", new Coordenada(1.5,5))),

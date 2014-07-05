@@ -52,7 +52,11 @@ class Viaje (var recorridos: List[Recorrido]){
         }else{
           tiempoTotal+= unRecorrido.tiempo
         }
+
         recorridoAnterior=unRecorrido
+
+        if(unRecorrido!=recorridos.head)//Asi no se carga el tiempo del primer recorrido 2 veces
+          tiempoTotal+= unRecorrido.tiempo
       }
       tiempoTotal
     }
