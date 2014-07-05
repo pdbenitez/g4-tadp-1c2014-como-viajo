@@ -37,4 +37,13 @@ object Estadistica {
       filtros.forall(unFiltro => unFiltro.esCumplidoPor(unViaje)))
   }
 
+  def removeFiltros() : Unit = {
+    filtros.clear()
+  }
+
+  def dameProporcion():Double = {
+    val viajesFiltrados = this.filtrame_viajes(BuscadorDeViajes.viajesHistoricos.toList)
+    viajesFiltrados.length * 100 / BuscadorDeViajes.viajesHistoricos.length
+  }
+
 }
