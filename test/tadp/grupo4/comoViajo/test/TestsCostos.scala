@@ -1,7 +1,7 @@
 package tadp.grupo4.comoViajo.test
 
 import org.scalatest.{Matchers, FlatSpec}
-import tadp.grupo4.comoViajo.{Colectivo, Subte, BuscadorDeViajes}
+import tadp.grupo4.comoViajo.{Tren, Colectivo, Subte, BuscadorDeViajes}
 
 /**
  * Created by martin on 03/07/14.
@@ -20,7 +20,9 @@ class TestsCostos extends FlatSpec with Matchers {
     viajes.head.getCosto() should be (4.5)
   }
   it should "Obtener costo tren 5 estaciones" in{
-
+    val viajes = BuscadorDeViajes.obtenerViajes("San Nicolas",4320, "Terrada",3550)
+    viajes.head.recorridos.head.trans shouldBe a [Tren]
+    viajes.head.getCosto() should be(4.5)
   }
   it should "Obtener costo tren 8 estaciones" in{
 
