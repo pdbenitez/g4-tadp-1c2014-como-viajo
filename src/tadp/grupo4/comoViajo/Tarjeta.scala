@@ -1,7 +1,5 @@
 package tadp.grupo4.comoViajo
 
 trait Tarjeta {
-
-  val porcentajeDescuento: Int
-
+  def getDescuento(viaje: Viaje):Double
 }

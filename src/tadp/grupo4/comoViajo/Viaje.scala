@@ -3,13 +3,7 @@ package tadp.grupo4.comoViajo
 import tadp.grupo4.moduloExterno.ModuloExterno
 
 class Viaje (var recorridos: List[Recorrido]){
-
-  //var origen: Direccion
-  //var destino: Direccion
-
-  //TODO: No olviar usar la tarjeta para calcular el costo. Sino hacerlo afuera de aca.
-
-  def getCosto: Double =
+  def getCosto(tarjeta :Tarjeta = TarjetaSinDescuento): Double =
     {
       var costoTotal: Double = 0
       var recorridoAnterior:Recorrido = null
@@ -23,7 +17,7 @@ class Viaje (var recorridos: List[Recorrido]){
         }
         recorridoAnterior=unRecorrido
       }
-      costoTotal
+      costoTotal-tarjeta.getDescuento(this)
     }
 
   def getTiempo: Double =
