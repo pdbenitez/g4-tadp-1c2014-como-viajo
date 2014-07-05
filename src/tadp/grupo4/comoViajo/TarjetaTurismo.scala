@@ -1,12 +1,14 @@
 package tadp.grupo4.comoViajo
 
-class TarjetaTurismo extends Tarjeta {
-  
-  val porcentajeDescuento = 10
+import scala.collection.mutable.ListBuffer
 
-  def getDescuento(): Double =
-    {
-		  1
+class TarjetaTurismo (val zonaDescuento:String = "Centro") extends Tarjeta {
+  def getDescuento(viaje :Viaje): Double =
+  {
+    val paradas = viaje.obtenerParadasRecorridas
+    for(parada <-paradas) {
+      if(parada.direccion.zona.eq(zonaDescuento)) return viaje.getCosto()*0.1
     }
-
+    0
+  }
 }

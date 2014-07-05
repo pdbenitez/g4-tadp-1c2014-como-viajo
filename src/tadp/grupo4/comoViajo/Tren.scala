@@ -1,6 +1,6 @@
 package tadp.grupo4.comoViajo
 
-class Tren(val ramal: String) extends Transporte {
+class Tren(val ramal: String, var empresa:Empresa) extends Transporte {
 
   def getTiempo(unaParada: Parada, otraParada: Parada): Double =
     {
@@ -11,10 +11,10 @@ class Tren(val ramal: String) extends Transporte {
       this.getPrecioEnBaseAEstaciones(unaParada, otraParada)
     }
 
-  def getPrecioEnBaseAEstaciones(unaParada: Parada, otraParada: Parada): Double =
+  def getPrecioEnBaseAEstaciones(origen: Parada, destino: Parada): Double =
     {
-      var cantEstaciones = 123 
-        //this.moduloExterno.getCantidadDeEstaciones(unaDireccion, otraDireccion)
+      val cantEstaciones = obtenerParadasRecorridas(origen, destino).size
+
       //En funcional esto va con pattern matching
       if (cantEstaciones <= 5) {
         2.0

@@ -1,13 +1,18 @@
 package tadp.grupo4.comoViajo
 
+import tadp.grupo4.moduloExterno.ModuloExterno
+
+import scala.collection.mutable.ListBuffer
+
 class Viaje (var recorridos: List[Recorrido]){
 
-  //var origen: Direccion
-  //var destino: Direccion
+  def obtenerParadasRecorridas:List[Parada] = {
+    var paradas = new ListBuffer[Parada]
+    for(recorrido<-recorridos) paradas++=recorrido.trans.obtenerParadasRecorridas(recorrido.orig, recorrido.dest)
+    paradas.toList
+  }
 
-  //TODO: No olviar usar la tarjeta para calcular el costo. Sino hacerlo afuera de aca.
-
-  def getCosto: Double =
+  def getCosto(tarjeta :Tarjeta = TarjetaSinDescuento): Double =
     {
       var costoTotal: Double = 0
       var recorridoAnterior:Recorrido = null
@@ -21,14 +26,32 @@ class Viaje (var recorridos: List[Recorrido]){
         }
         recorridoAnterior=unRecorrido
       }
-      costoTotal
+      costoTotal-tarjeta.getDescuento(this)
     }
 
   def getTiempo: Double =
     {
       var tiempoTotal: Double = 0
+      var recorridoAnterior:Recorrido = null
       for(unRecorrido<- recorridos){
-        tiempoTotal+= unRecorrido.tiempo
+        if(recorridoAnterior!=null){
+          val tAnterior = recorridoAnterior.trans
+          val tActual = unRecorrido.trans
+          if(tAnterior.isInstanceOf[Subte] && tActual.isInstanceOf[Subte] && recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion))
+            tiempoTotal+= 4
+          else if (tAnterior.isInstanceOf[Subte] && tActual.isInstanceOf[Tren] && recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion))
+            tiempoTotal+= 5
+          else if (tAnterior.isInstanceOf[Tren] && tActual.isInstanceOf[Tren] && recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion))
+            tiempoTotal+= 6
+          else{
+            val dirIniComb = recorridoAnterior.dest.direccion
+            val dirFinComb = unRecorrido.orig.direccion
+            tiempoTotal+= (ModuloExterno.getDistanciaAPie(dirIniComb,dirFinComb))*25  //((dist en km*1000/100)*2.5)
+          }
+        }else{
+          tiempoTotal+= unRecorrido.tiempo
+        }
+        recorridoAnterior=unRecorrido
       }
       tiempoTotal
     }

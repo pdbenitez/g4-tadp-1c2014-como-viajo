@@ -46,7 +46,7 @@ object BuscadorDeViajes {
     criterio match{
       case CriterioBusqueda.Costo => Collections.sort(lstViajes, new Comparator[Viaje](){
         def compare(v1 :Viaje, v2 :Viaje):Int={
-          return v1.getCosto.compareTo(v2.getCosto)
+          return v1.getCosto().compareTo(v2.getCosto())
         }
       })
       case CriterioBusqueda.Tiempo => Collections.sort(lstViajes, new Comparator[Viaje](){
@@ -60,9 +60,6 @@ object BuscadorDeViajes {
     }
 
     lstViajes.asScala.toList
-    //TODO: Si no hay viajes sin combinacion entonces ver los viajes posible con combinacion
-    //TODO: tambien faltaria ordenar por el criterio de viaje, no se como esta pero podria ser un enum perfectamnete
-    //TODO: tambien faltaria pasar la tarjeta tal y como dijo Jorge. La tarjeta puede ser un parametro opcional (Scala acepta parametros opcionales)
   }
 
   def confirmarViaje(unViaje : Viaje) : Unit = {

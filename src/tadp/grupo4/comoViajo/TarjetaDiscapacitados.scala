@@ -1,7 +1,8 @@
 package tadp.grupo4.comoViajo
 
-class TarjetaDiscapacitados {
-  
-  val porcentajeDescuento = 100
-
+class TarjetaDiscapacitados extends Tarjeta{
+  def getDescuento(viaje :Viaje): Double =
+  {
+    viaje.getCosto()
+  }
 }
