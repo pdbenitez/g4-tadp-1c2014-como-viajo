@@ -7,10 +7,22 @@ class Colectivo(linea: Int, var empresa:Empresa) extends Transporte {
   val numeroColectivo = linea
 
   def getTiempo(unaParada: Parada, otraParada: Parada): Double =
-    {
-      //(this.moduloExterno.getDistanciaEntreColectivos(unaDireccion, this, this) / 1000) / 15
-    15
+  {
+    var distRecorrida=0
+
+    val paradasIntermedias:List[Parada]=obtenerParadasRecorridas(unaParada,otraParada)
+    var paradaAnterior=paradasIntermedias.head
+
+    for(parada<-paradasIntermedias){
+      distRecorrida+=ModuloExterno.getDistanciaRecorridaPorUnColectivo(paradaAnterior,parada)
+      paradaAnterior=parada
     }
+
+    // 15km    _ _ 1hs    Y     1hs _ _ 60min
+    // distRec _ _ Xhs          Xhs _ _ Ymin
+    distRecorrida/15*60
+  }
+
   def getCosto(unaParada: Parada, otraParada: Parada): Double =
     {
       this.getPrecioEnBaseADistancia(unaParada, otraParada)
