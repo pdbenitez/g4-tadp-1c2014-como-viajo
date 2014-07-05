@@ -1,10 +1,13 @@
 package tadp.grupo4.comoViajo.test
 
 import org.scalatest.{Matchers, FlatSpec}
+import tadp.grupo4.comoViajo.{Subte, BuscadorDeViajes}
 
 class TestsTiemposDeViaje extends FlatSpec with Matchers {
   it should "Obtener tiempo subte SIN combinacion" in{
-
+    val viajes = BuscadorDeViajes.obtenerViajes("Corrientes",7500, "Corrientes",6100)
+    val viajeAAnalizar= viajes.head
+    viajeAAnalizar.getTiempo should be(4)
   }
   it should "Obtener tiempo subte CON combinacion" in{
 
