@@ -44,7 +44,7 @@ object BuscadorDeViajes {
     criterio match{
       case CriterioBusqueda.Costo => Collections.sort(lstViajes, new Comparator[Viaje](){
         def compare(v1 :Viaje, v2 :Viaje):Int={
-          return v1.getCosto.compareTo(v2.getCosto)
+          return v1.getCosto().compareTo(v2.getCosto())
         }
       })
       case CriterioBusqueda.Tiempo => Collections.sort(lstViajes, new Comparator[Viaje](){
