@@ -58,8 +58,20 @@ object BuscadorDeViajes {
     }
 
     lstViajes.asScala.toList
-    //TODO: Si no hay viajes sin combinacion entonces ver los viajes posible con combinacion
-    //TODO: tambien faltaria ordenar por el criterio de viaje, no se como esta pero podria ser un enum perfectamnete
-    //TODO: tambien faltaria pasar la tarjeta tal y como dijo Jorge. La tarjeta puede ser un parametro opcional (Scala acepta parametros opcionales)
+  }
+
+  def obtenerParadasRecorridas(viaje: Viaje):List[Parada]={
+    var paradas = new ListBuffer[Parada]
+    var flag = 0
+    for(recorrido <-viaje.recorridos) {
+      val origen = recorrido.orig
+      val destino = recorrido.dest
+
+      for(parada<-recorrido.trans.listaDeParadas){
+        if(parada.eq(origen) || parada.eq(origen)) flag+=1
+        if(flag==1) paradas+=parada
+      }
+    }
+    paradas.toList
   }
 }
