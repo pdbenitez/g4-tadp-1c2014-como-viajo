@@ -15,7 +15,7 @@ object Estadistica {
     val viajesFiltrados = this.filtrame_viajes(BuscadorDeViajes.viajesHistoricos.toList)
     var costoAcumulado : Double = 0
     viajesFiltrados.foreach((unViaje : Viaje)=>
-      costoAcumulado += unViaje.getCosto)
+      costoAcumulado += unViaje.getCosto())
     costoAcumulado/viajesFiltrados.length
   }
 
