@@ -27,17 +27,45 @@ object ModuloExterno {
 
   var subteC: Transporte = new Subte("B")
   var paradasSubteC = List(
-    new Parada(subteC, new Direccion("Irigoyen", 1000, "Centro", new Coordenada(1.5,5))),
-    new Parada(subteC, new Direccion("Irigoyen", 700, "Centro", new Coordenada(1.5,4))),
-    new Parada(subteC, new Direccion("Irigoyen", 400, "Centro", new Coordenada(1.5,3))),
-    new Parada(subteC, new Direccion("Irigoyen", 0, "Centro", new Coordenada(1.5,2))),
+    new Parada(subteC, new Direccion("Brasil", 1100, "Constitucion", new Coordenada(1.6,5.5))),
+    new Parada(subteC, new Direccion("Irigoyen", 1100, "Monserrat", new Coordenada(1.5,5))),
+    new Parada(subteC, new Direccion("Irigoyen", 700, "Monserrat", new Coordenada(1.5,4))),
+    new Parada(subteC, new Direccion("Irigoyen", 400, "Monserrat", new Coordenada(1.5,3))),
+    new Parada(subteC, new Direccion("Irigoyen", 0, "Monserrat", new Coordenada(1.5,2))),
     new Parada(subteC, new Direccion("Corrientes", 1000, "San Nicolas", new Coordenada(1,1))),
     new Parada(subteC, new Direccion("Esmeralda", 500, "Almagro", new Coordenada(0,0))))
   subteC.listaDeParadas_=(paradasSubteC)
 
+  var trenRoca: Transporte = new Tren()
+  var paradasTrenRoca = List (
+    new Parada(trenRoca, new Direccion("Brasil", 1100, "Constitucion", new Coordenada(1.6,5.5))),
+    new Parada(trenRoca, new Direccion("Villarino", 2300, "Barracas", new Coordenada(1.5,7.6)))
+  )
+  trenRoca.listaDeParadas_=(paradasTrenRoca)
+
+  var trenUrquiza: Transporte = new Tren("Urquiza")
+  var paradasTrenUrquiza = List (
+    new Parada(trenUrquiza, new Direccion("Corrientes", 6500, "Villa Crespo",  new Coordenada(6.5,1))),
+    new Parada(trenUrquiza, new Direccion("Elcano", 4600, "Paternal",  new Coordenada(7.5,1.3))),
+    new Parada(trenUrquiza, new Direccion("Chorroarin", 400, "Paternal",  new Coordenada(8.3,1.5))),
+    new Parada(trenUrquiza, new Direccion("Terrada", 3600, "Agronomia",  new Coordenada(9.6,1.5))),
+    new Parada(trenUrquiza, new Direccion("San Martin", 6300, "Villa Devoto",  new Coordenada(10.2,1.7))),
+    new Parada(trenUrquiza, new Direccion("San Nicolas", 4300, "Villa Devoto",  new Coordenada(10.6,1.8)))
+  )
+  trenUrquiza.listaDeParadas_=(paradasTrenUrquiza)
+
+  var trenSarmiento: Transporte = new Tren()
+  var paradasTrenSarmiento = List (
+    new Parada(trenSarmiento, new Direccion("Pueyrredon", 100, "Balvanera", new Coordenada(3.7,4))),
+    new Parada(trenSarmiento, new Direccion("Nicolas Repetto", 200, "Balvanera", new Coordenada(6.4,3.7))),
+    new Parada(trenSarmiento, new Direccion("Yerbal", 2500, "Balvanera", new Coordenada(8,3.8))),
+    new Parada(trenSarmiento, new Direccion("Yerbal", 3700, "La Boca", new Coordenada(9,3.9))),
+    new Parada(trenSarmiento, new Direccion("Virgilio", 200, "La Boca", new Coordenada(10.7,3.9))),
+    new Parada(trenSarmiento, new Direccion("Rivadavia", 11500, "La Boca", new Coordenada(12.5,4)))
+  )
+  trenSarmiento.listaDeParadas_=(paradasTrenSarmiento)
 
   var colectivo24: Transporte = new Colectivo(24)
-  
   var direccionesColectivo24= List(
     new Parada(colectivo24,new Direccion("Corrientes", 5000, "Villa Crespo", new Coordenada(5,0))),
     new Parada(colectivo24,new Direccion("Corrientes", 4000, "Almagro", new Coordenada(4,0))),
@@ -107,11 +135,27 @@ object ModuloExterno {
     new Direccion("Rivadavia", 14000,  "Liniers",    new Coordenada(15,4)),
     new Direccion("Rivadavia", 15000,  "Liniers",    new Coordenada(16,4)),
     //Direciones Subte C
+    new Direccion("Brasil", 1100, "Constitucion", new Coordenada(1.6,5.5)), //Compartido.. Es la cabecera del Tren Roca
     new Direccion("Irigoyen", 1000, "Centro", new Coordenada(1.5,5)),
     new Direccion("Irigoyen", 700, "Centro", new Coordenada(1.5,4)),
     new Direccion("Irigoyen", 400, "Centro", new Coordenada(1.5,3)),
     new Direccion("Irigoyen", 0, "Centro", new Coordenada(1.5,2)),
-    new Direccion("Esmeralda", 500, "Almagro", new Coordenada(0,0))
+    new Direccion("Esmeralda", 500, "Almagro", new Coordenada(0,0)),
+    //Direciones Tren Roca
+    new Direccion("Villarino", 2300, "Barracas", new Coordenada(1.5,7.6)),
+  //Direcciones Tren Urquiza
+    new Direccion("Elcano", 4600, "Paternal",  new Coordenada(7.5,1.3)),
+    new Direccion("Chorroarin", 400, "Paternal",  new Coordenada(8.3,1.5)),
+    new Direccion("Terrada", 3600, "Agronomia",  new Coordenada(9.6,1.5)),
+    new Direccion("San Martin", 6300, "Villa Devoto",  new Coordenada(10.2,1.7)),
+    new Direccion("San Nicolas", 4300, "Villa Devoto",  new Coordenada(10.6,1.8)),
+    //Direcciones Tres Sarmiento
+    new Direccion("Pueyrredon", 100, "Balvanera", new Coordenada(3.7,4)),
+    new Direccion("Nicolas Repetto", 200, "Balvanera", new Coordenada(6.4,3.7)),
+    new Direccion("Yerbal", 2500, "Balvanera", new Coordenada(8,3.8)),
+    new Direccion("Yerbal", 3700, "La Boca", new Coordenada(9,3.9)),
+    new Direccion("Virgilio", 200, "La Boca", new Coordenada(10.7,3.9)),
+    new Direccion("Rivadavia", 11500, "La Boca", new Coordenada(12.5,4))
   )
 
   def getDistanciaRecorridaPorUnColectivo(unaDireccion: Direccion, otraDireccion: Direccion): Double =
