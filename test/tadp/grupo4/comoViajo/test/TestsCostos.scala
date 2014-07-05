@@ -59,6 +59,8 @@ class TestsCostos extends FlatSpec with Matchers {
     viajes.head.getCosto(new TarjetaDiscapacitados) should be(0)
   }
   it should "Obtener costo con tarjeta YENDO AL TRABAJO" in{
-
+    val viajes = BuscadorDeViajes.obtenerViajes("Rivadavia", 9000, "Rivadavia", 1000)
+    viajes.head.recorridos.head.trans shouldBe a [Colectivo]
+    viajes.head.getCosto(new TarjetaYendoAlTrabajo) should be(2.85-1.5)
   }
 }
