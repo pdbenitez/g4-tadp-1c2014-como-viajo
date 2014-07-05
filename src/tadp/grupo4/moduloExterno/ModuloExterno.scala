@@ -36,7 +36,7 @@ object ModuloExterno {
     new Parada(subteC, new Direccion("Esmeralda", 500, "Almagro", new Coordenada(0,0))))
   subteC.listaDeParadas_=(paradasSubteC)
 
-  var trenRoca: Transporte = new Tren()
+  var trenRoca: Transporte = new Tren("Roca")
   var paradasTrenRoca = List (
     new Parada(trenRoca, new Direccion("Brasil", 1100, "Constitucion", new Coordenada(1.6,5.5))),
     new Parada(trenRoca, new Direccion("Villarino", 2300, "Barracas", new Coordenada(1.5,7.6)))
@@ -54,7 +54,7 @@ object ModuloExterno {
   )
   trenUrquiza.listaDeParadas_=(paradasTrenUrquiza)
 
-  var trenSarmiento: Transporte = new Tren()
+  var trenSarmiento: Transporte = new Tren("Sarmiento")
   var paradasTrenSarmiento = List (
     new Parada(trenSarmiento, new Direccion("Pueyrredon", 100, "Balvanera", new Coordenada(3.7,4))),
     new Parada(trenSarmiento, new Direccion("Nicolas Repetto", 200, "Balvanera", new Coordenada(6.4,3.7))),
