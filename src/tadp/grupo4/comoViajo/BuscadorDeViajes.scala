@@ -20,8 +20,8 @@ object BuscadorDeViajes {
 
     for(paradaOrigen<-paradasOrigen){
       for(paradaDestino<-paradasDestino){
-        if(paradaDestino._2.transporte.eq(paradaOrigen._2.transporte)){
-          val recorridos = List(new Recorrido(paradaOrigen._2, paradaDestino._2, paradaOrigen._2.transporte))
+        if(paradaDestino.transporte.eq(paradaOrigen.transporte)){
+          val recorridos = List(new Recorrido(paradaOrigen, paradaDestino, paradaOrigen.transporte))
           viajesSinCombinacion+=new Viaje(recorridos)
         }
       }
@@ -31,12 +31,12 @@ object BuscadorDeViajes {
 
     for(pOrigenInicio<-paradasOrigen){
     for(pDestinoFin<-paradasDestino) {
-        if(!pOrigenInicio._2.transporte.eq(pDestinoFin._2.transporte)){
-          for(pOrigenFin<-pOrigenInicio._2.transporte.listaDeParadas){
-          for(paradaDestinoInicio<-pDestinoFin._2.transporte.listaDeParadas){
+        if(!pOrigenInicio.transporte.eq(pDestinoFin.transporte)){
+          for(pOrigenFin<-pOrigenInicio.transporte.listaDeParadas){
+          for(paradaDestinoInicio<-pDestinoFin.transporte.listaDeParadas){
               if(ModuloExterno.getDistanciaAPie(pOrigenFin.direccion, paradaDestinoInicio.direccion)<maxDistCaminar){
-              if((!pOrigenInicio._2.eq(pOrigenFin)) && (!paradaDestinoInicio.eq(pDestinoFin._2))){
-                  val recorridos = List(new Recorrido(pOrigenInicio._2, pOrigenFin, pOrigenInicio._2.transporte),new Recorrido(paradaDestinoInicio, pDestinoFin._2, pDestinoFin._2.transporte))
+              if((!pOrigenInicio.eq(pOrigenFin)) && (!paradaDestinoInicio.eq(pDestinoFin))){
+                  val recorridos = List(new Recorrido(pOrigenInicio, pOrigenFin, pOrigenInicio.transporte),new Recorrido(paradaDestinoInicio, pDestinoFin, pDestinoFin.transporte))
                   viajesConCombinacion+=new Viaje(recorridos)
               }
               }

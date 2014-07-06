@@ -240,42 +240,21 @@ object ModuloExterno {
   }
 
 
-  def buscarParadasMasCercanas(direccionNombre: String, direccionAltura: Long, maxDist:Double = Double.MaxValue): List[(Double,Parada)] =
+  def buscarParadasMasCercanas(direccionNombre: String, direccionAltura: Long, maxDist:Double = Double.MaxValue): List[Parada] =
   {
     buscarParadasMasCercanas(buscarDireccionMasCercana(direccionNombre, direccionAltura), maxDist)
   }
 
-  def buscarParadasMasCercanas(unaDireccion: Direccion, maxDist:Double): List[(Double,Parada)] =
+  def buscarParadasMasCercanas(unaDireccion: Direccion, maxDist:Double): List[Parada] =
   {
-    var paradas = new ListBuffer[(Double,Parada)]
-    for(tranporte <- todosLosTransportes){
-      var parada = buscarParadaMasCercana(unaDireccion, tranporte)
-      if(parada._1<maxDist) paradas+=parada
-    }
-    var paradasTmp = paradas.asJava
-    Collections.sort(paradasTmp, new Comparator[(Double,Parada)](){
-      def compare(p1 :(Double,Parada), p2 :(Double,Parada)):Int={
-        return p1._1.compareTo(p2._1)
-      }
-    })
-    paradasTmp.asScala.toList
-    //paradas.sortBy(-_._1).toList
+    todosLosTransportes.map(x=>buscarParadaMasCercana(unaDireccion, x))
+                       .filter(x=>x.getDistanciaAPie(unaDireccion)<maxDist)
+                       .sortBy(- _.getDistanciaAPie(unaDireccion))
   }
 
-  def buscarParadaMasCercana(unaDireccion: Direccion, unTransporte: Transporte): (Double,Parada) =
+  def buscarParadaMasCercana(unaDireccion: Direccion, unTransporte: Transporte): Parada =
     {
-      var paradaMasCercana: Parada = null
-      var minDist : Double = Double.MaxValue
-
-      for(unaParada <- unTransporte.listaDeParadas){
-        val dist = getDistanciaAPie(unaParada.direccion,unaDireccion)
-        if(dist<minDist) {
-          minDist = dist
-          paradaMasCercana = unaParada
-        }
-      }
-
-      (minDist,paradaMasCercana)
+      unTransporte.listaDeParadas.minBy(x=>unaDireccion.getDistanciaAPie(x.direccion))
     }
 
 
