@@ -1,8 +1,5 @@
 package tadp.grupo4.comoViajo
 
-/**
- * Created by daniel on 05/07/14.
- */
 class FiltroEmpresa(val empresa: Empresa) extends Filtro{
 
   def esCumplidoPor(unViaje : Viaje) :Boolean = {

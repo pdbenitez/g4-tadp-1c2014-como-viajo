@@ -1,5 +1,7 @@
 package tadp.grupo4.moduloExterno
 
+import java.util.{Comparator, Collections}
+import scala.collection.JavaConverters._
 import tadp.grupo4.comoViajo._
 import scala.collection.mutable.ListBuffer
 
@@ -250,7 +252,14 @@ object ModuloExterno {
       var parada = buscarParadaMasCercana(unaDireccion, tranporte)
       if(parada._1<maxDist) paradas+=parada
     }
-    paradas.sortBy(-_._1).toList
+    var paradasTmp = paradas.asJava
+    Collections.sort(paradasTmp, new Comparator[(Double,Parada)](){
+      def compare(p1 :(Double,Parada), p2 :(Double,Parada)):Int={
+        return p1._1.compareTo(p2._1)
+      }
+    })
+    paradasTmp.asScala.toList
+    //paradas.sortBy(-_._1).toList
   }
 
   def buscarParadaMasCercana(unaDireccion: Direccion, unTransporte: Transporte): (Double,Parada) =

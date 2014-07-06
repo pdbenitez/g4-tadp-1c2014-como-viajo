@@ -1,7 +1,5 @@
 package tadp.grupo4.comoViajo
 
-import scala.collection.mutable.ListBuffer
-
 class TarjetaTurismo (val zonaDescuento:String = "Centro") extends Tarjeta {
   def getDescuento(viaje :Viaje): Double =
   {
