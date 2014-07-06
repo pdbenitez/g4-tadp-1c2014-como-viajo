@@ -6,7 +6,6 @@ import tadp.grupo4.comoViajo._
 
 class TestsCostos extends FlatSpec with Matchers {
 
-
     it should "Obtener costo subte SIN combinacion" in{
     val viajes = BuscadorDeViajes.obtenerViajes("Corrientes",7500, "Corrientes",6100)
     viajes.head.recorridos.head.trans shouldBe a [Subte]

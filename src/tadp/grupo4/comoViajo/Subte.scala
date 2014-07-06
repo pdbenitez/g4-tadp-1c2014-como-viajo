@@ -6,7 +6,7 @@ class Subte(linea: String, var empresa: Empresa) extends Transporte {
 
   def getTiempo(unaParada: Parada, otraParada: Parada): Double =
   {
-    val paradasIntermedias:List[Parada]=obtenerParadasRecorridas(unaParada,otraParada)
+    val paradasIntermedias=obtenerParadasRecorridas(unaParada,otraParada)
     (paradasIntermedias.size-1)*2 //2 minutos por estacion de subte
   }
 

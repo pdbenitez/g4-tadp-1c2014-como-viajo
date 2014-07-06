@@ -12,6 +12,7 @@ class Viaje (var recorridos: List[Recorrido]){
 
   def getCosto(tarjeta :Tarjeta = TarjetaSinDescuento): Double =
     {
+      //Aca estaria lindo usar recursividad
       var costoTotal: Double = 0
       var recorridoAnterior:Recorrido = null
       for(unRecorrido<- recorridos){

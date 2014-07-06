@@ -5,14 +5,9 @@ class TarjetaYendoAlTrabajo extends Tarjeta{
   def getDescuento(viaje :Viaje): Double =
   {
     val zonaOrigen = viaje.recorridos.head.orig.direccion.zona
-    if(viaje.recorridos.head.dest.direccion.zona=="Centro"){
-      //Aca va funcional tambien
-      for(zonaDesc<-zonasDescuento){
-        if(zonaOrigen==zonaDesc){
-         return 1.5 //Mira como salgo del loop sin break
-        }
-      }
+    viaje.recorridos.head.dest.direccion.zona match{
+      case "Centro" => if(zonasDescuento.contains(zonaOrigen)) 1.5 else 0
+      case _ => 0
     }
-    0
   }
 }

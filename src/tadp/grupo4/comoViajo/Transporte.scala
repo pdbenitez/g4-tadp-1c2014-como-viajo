@@ -22,5 +22,14 @@ trait Transporte {
       if(flag) paradas+=parada
     }
     paradas.toList
+//    val lst1 = listaDeParadas.span(x=> x.eq(origen) || x.eq(destino))
+//    val cabeza = lst1._1.last
+//    val resto = lst1._2
+//
+//    val lst2 = resto.span(x=> x.eq(origen) || x.eq(destino))
+//    val cuerpo = lst2._1
+//    val cola = lst2._2.head
+//
+//    List(cabeza):::cuerpo:::List(cola)
   }
 }

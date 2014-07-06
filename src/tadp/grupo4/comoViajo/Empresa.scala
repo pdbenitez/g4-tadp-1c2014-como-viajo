@@ -1,6 +1,6 @@
 package tadp.grupo4.comoViajo
 
 
- class Empresa(var empresa:String) {
-
+ class Empresa(var nombre:String) {
+  def eq(unaEmpresa:Empresa) = unaEmpresa.nombre==nombre
 }

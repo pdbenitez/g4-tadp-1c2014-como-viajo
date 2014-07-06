@@ -32,13 +32,10 @@ class Colectivo(linea: Int, var empresa:Empresa) extends Transporte {
     {
       val distancia = ModuloExterno.getDistanciaRecorridaPorUnColectivo(unaParada.direccion, otraParada.direccion)
       //Aca va pattern matching de funcional
-      if (distancia <= 3) {
-        2.50
-      } else {
-        if (distancia <= 6) {
-          2.75
-        } else
-          2.85
+      distancia match{
+        case x if(x<=3) => 2.5
+        case x if(x<=6) => 2.75
+        case _ => 2.85
       }
     }
 }
