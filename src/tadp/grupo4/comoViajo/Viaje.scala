@@ -10,21 +10,20 @@ class Viaje (var recorridos: List[Recorrido]){
     recorridos.flatMap(x=>x.trans.obtenerParadasRecorridas(x.orig, x.dest))
   }
 
+  //Recursividad FTW
+  private def getInternalCost(lstRec :List[Recorrido]):Double={
+    lstRec match{
+      case Nil => 0
+      case head::Nil => head.costo
+      case head::tail if(head.trans.isInstanceOf[Subte] && tail.head.trans.isInstanceOf[Subte] && head.dest.direccion.eq(tail.head.orig.direccion)) => getInternalCost(tail)
+      case head::tail => head.costo + getInternalCost(tail)
+    }
+  }
+
+
   def getCosto(tarjeta :Tarjeta = TarjetaSinDescuento): Double =
     {
-      //Aca estaria lindo usar recursividad
-      var costoTotal: Double = 0
-      var recorridoAnterior:Recorrido = null
-      for(unRecorrido<- recorridos){
-        if(recorridoAnterior!=null){
-          val tAnterior = recorridoAnterior.trans
-          val tActual = unRecorrido.trans
-          if(!tAnterior.isInstanceOf[Subte] || !tActual.isInstanceOf[Subte] || !recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion)) costoTotal+= unRecorrido.costo
-        }else{
-          costoTotal+= unRecorrido.costo
-        }
-        recorridoAnterior=unRecorrido
-      }
+      val costoTotal = getInternalCost(recorridos)
       val total = costoTotal-tarjeta.getDescuento(this)
       if(total<0) 0 else total
     }
