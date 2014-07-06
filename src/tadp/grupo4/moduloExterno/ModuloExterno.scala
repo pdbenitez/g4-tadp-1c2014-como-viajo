@@ -111,7 +111,7 @@ object ModuloExterno {
     new Parada(trenSarmiento, new Direccion("Yerbal", 2500, "Balvanera", new Coordenada(8,3.8))),
     new Parada(trenSarmiento, new Direccion("Yerbal", 3700, "La Boca", new Coordenada(9,3.9))),
     new Parada(trenSarmiento, new Direccion("Virgilio", 200, "La Boca", new Coordenada(10.7,3.9))),
-    new Parada(trenSarmiento, new Direccion("Rivadavia", 11500, "La Boca", new Coordenada(12.5,4)))
+    new Parada(trenSarmiento, new Direccion("Rivadavia", 11900, "La Boca", new Coordenada(12.9,4)))
   )
   trenSarmiento.listaDeParadas_=(paradasTrenSarmiento)
 
@@ -205,7 +205,7 @@ object ModuloExterno {
     new Direccion("Yerbal", 2500, "Balvanera", new Coordenada(8,3.8)),
     new Direccion("Yerbal", 3700, "La Boca", new Coordenada(9,3.9)),
     new Direccion("Virgilio", 200, "La Boca", new Coordenada(10.7,3.9)),
-    new Direccion("Rivadavia", 11500, "La Boca", new Coordenada(12.5,4)),
+    new Direccion("Rivadavia", 11900, "La Boca", new Coordenada(12.9,4)),
     //Tren Urquiza Continuacion
     new Direccion("San Lejano", 0, "Villa Lejano",  new Coordenada(12.6,4)),
     new Direccion("San Pedro", 0, "Villa Devotito",  new Coordenada(12.6,2))

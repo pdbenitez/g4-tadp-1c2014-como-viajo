@@ -40,7 +40,8 @@ class Viaje (var recorridos: List[Recorrido]){
           val tActual = unRecorrido.trans
           if(tAnterior.isInstanceOf[Subte] && tActual.isInstanceOf[Subte] && recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion))
             tiempoTotal+= 4//Combinacion subte
-          else if (tAnterior.isInstanceOf[Subte] && tActual.isInstanceOf[Tren] && recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion))
+          else if (  ((tAnterior.isInstanceOf[Tren] && tActual.isInstanceOf[Subte])||(tAnterior.isInstanceOf[Subte] && tActual.isInstanceOf[Tren]))
+                  && recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion))
             tiempoTotal+= 5//Combinacion subte-tren
           else if (tAnterior.isInstanceOf[Tren] && tActual.isInstanceOf[Tren] && recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion))
             tiempoTotal+= 6//Combinacion tren-tren
