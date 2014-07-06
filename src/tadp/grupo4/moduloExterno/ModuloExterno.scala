@@ -40,14 +40,10 @@ object ModuloExterno {
 
   var tablaCostosRoca = new TablaPrecios {
     override def getPrecio(cantParadas: Int): Double = {
-      //En funcional esto va con pattern matching
-      if (cantParadas <= 5) {
-        2.0
-      } else {
-        if (cantParadas <= 8) {
-          3.5
-        } else
-          4.75
+      cantParadas match{
+        case x if(x<=5) => 2.0
+        case x if(x<=8) => 3.5
+        case x if(x>8) => 4.75
       }
     }
   }
@@ -61,14 +57,10 @@ object ModuloExterno {
 
   var tablaCostosUrquiza = new TablaPrecios {
     override def getPrecio(cantParadas: Int): Double = {
-      //En funcional esto va con pattern matching
-      if (cantParadas <= 3) {
-        3.0
-      } else {
-        if (cantParadas <= 4) {
-          4.5
-        } else
-          5.75
+      cantParadas match{
+        case x if(x<=3) => 3.0
+        case x if(x<=4) => 4.5
+        case x if(x>4) => 5.75
       }
     }
   }
@@ -94,14 +86,10 @@ object ModuloExterno {
 
   var tablaCostosSarmiento = new TablaPrecios {
     override def getPrecio(cantParadas: Int): Double = {
-      //En funcional esto va con pattern matching
-      if (cantParadas <= 5) {
-        8.0
-      } else {
-        if (cantParadas <= 8) {
-          8.5
-        } else
-          9.75
+      cantParadas match{
+        case x if(x<=5) => 8.0
+        case x if(x<=8) => 8.5
+        case x if(x>8) => 9.75
       }
     }
   }

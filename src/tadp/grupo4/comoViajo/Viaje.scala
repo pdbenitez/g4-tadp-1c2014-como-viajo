@@ -7,9 +7,7 @@ import scala.collection.mutable.ListBuffer
 class Viaje (var recorridos: List[Recorrido]){
 
   def obtenerParadasRecorridas:List[Parada] = {
-    var paradas = new ListBuffer[Parada]
-    for(recorrido<-recorridos) paradas++=recorrido.trans.obtenerParadasRecorridas(recorrido.orig, recorrido.dest)
-    paradas.toList
+    recorridos.flatMap(x=>x.trans.obtenerParadasRecorridas(x.orig, x.dest))
   }
 
   def getCosto(tarjeta :Tarjeta = TarjetaSinDescuento): Double =

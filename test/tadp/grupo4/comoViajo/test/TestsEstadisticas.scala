@@ -13,14 +13,10 @@ class TestsEstadisticas extends FlatSpec with Matchers with BeforeAndAfter {
 
   var tablaCostos = new TablaPrecios {
     override def getPrecio(cantParadas: Int): Double = {
-      //En funcional esto va con pattern matching
-      if (cantParadas <= 5) {
-        2.0
-      } else {
-        if (cantParadas <= 8) {
-          3.5
-        } else
-          4.75
+      cantParadas match{
+        case x if(x<=5) => 2.0
+        case x if(x<=8) => 3.5
+        case x if(x>8) => 4.75
       }
     }
   }

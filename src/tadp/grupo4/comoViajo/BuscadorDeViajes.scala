@@ -46,24 +46,11 @@ object BuscadorDeViajes {
     }
     }
 
-    var lstViajes = (viajesSinCombinacion++viajesConCombinacion).asJava
+    val lstViajes = viajesSinCombinacion++viajesConCombinacion
     criterio match{
-      case CriterioBusqueda.Costo => Collections.sort(lstViajes, new Comparator[Viaje](){
-        def compare(v1 :Viaje, v2 :Viaje):Int={
-          return v1.getCosto().compareTo(v2.getCosto())
-        }
-      })
-      case CriterioBusqueda.Tiempo => Collections.sort(lstViajes, new Comparator[Viaje](){
-        def compare(v1 :Viaje, v2 :Viaje):Int={
-          return v1.getTiempo.compareTo(v2.getTiempo)
-        }
-      })
-        //Asi quedaria con funcional
-//      case CriterioBusqueda.Costo => viajesSinCombinacion.sortBy(-_.getCosto).toList //El menos me permite ordenar de menor a mayor..je
-//      case CriterioBusqueda.Tiempo => viajesSinCombinacion.sortBy(-_.getTiempo).toList
+      case CriterioBusqueda.Costo => lstViajes.sortBy(- _.getCosto()).toList //El menos me permite ordenar de menor a mayor..je
+      case CriterioBusqueda.Tiempo => lstViajes.sortBy(- _.getTiempo).toList
     }
-
-    lstViajes.asScala.toList
   }
 
   def confirmarViaje(unViaje : Viaje) : Unit = {
