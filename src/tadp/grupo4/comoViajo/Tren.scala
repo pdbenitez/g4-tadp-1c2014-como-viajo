@@ -1,6 +1,6 @@
 package tadp.grupo4.comoViajo
 
-class Tren(val ramal: String, var empresa:Empresa, var tablaPrecios:TablaPrecios) extends Transporte {
+class Tren(val ramal: String, var empresa:Empresa,calcPrecio :(Int)=>Double) extends Transporte {
 
   def getTiempo(unaParada: Parada, otraParada: Parada): Double =
     {
@@ -9,6 +9,6 @@ class Tren(val ramal: String, var empresa:Empresa, var tablaPrecios:TablaPrecios
     }
   def getCosto(origen: Parada, destino: Parada): Double =
     {
-      tablaPrecios.getPrecio(obtenerParadasRecorridas(origen, destino).size-1)
+      calcPrecio(obtenerParadasRecorridas(origen, destino).size-1)
     }
 }

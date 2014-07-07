@@ -23,8 +23,7 @@ class Viaje (var recorridos: List[Recorrido]){
 
   def getCosto(tarjeta :Tarjeta = TarjetaSinDescuento): Double =
     {
-      val costoTotal = getInternalCost(recorridos)
-      val total = costoTotal-tarjeta.getDescuento(this)
+      val total = getInternalCost(recorridos)-tarjeta.getDescuento(this)
       if(total<0) 0 else total
     }
 

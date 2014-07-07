@@ -11,15 +11,13 @@ class TestsEstadisticas extends FlatSpec with Matchers with BeforeAndAfter {
   //  Porcentaje de utilizacion (cantidad de viajes)
   //  Facturacion total.
 
-  var tablaCostos = new TablaPrecios {
-    override def getPrecio(cantParadas: Int): Double = {
+    def calculadorCosto(cantParadas: Int): Double = {
       cantParadas match{
         case x if(x<=5) => 2.0
         case x if(x<=8) => 3.5
         case x if(x>8) => 4.75
       }
     }
-  }
   //4 subtes,3 subtes, 3 colec
   before {
     BuscadorDeViajes.confirmarViaje(BuscadorDeViajes.obtenerViajes("Corrientes", 7500, "Corrientes", 6100).head)
@@ -52,7 +50,7 @@ class TestsEstadisticas extends FlatSpec with Matchers with BeforeAndAfter {
     println("Facturacion Total Colectivo = " + facturacionTotalColectivo)
     Estadistica.removeFiltros()
 
-    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Roca", new Empresa("UGOFE"), tablaCostos)))
+    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Roca", new Empresa("UGOFE"), calculadorCosto)))
     val facturacionTotalTren = Estadistica.facturacionTotal()
     println("Facturacion Total Tren = " + facturacionTotalTren)
     Estadistica.removeFiltros()
@@ -72,7 +70,7 @@ class TestsEstadisticas extends FlatSpec with Matchers with BeforeAndAfter {
     println("Tiempo promedio de los viajes en Colectivo = " + tiempoPromedioColectivo)
     Estadistica.removeFiltros()
 
-    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Roca", new Empresa("UGOFE"), tablaCostos)))
+    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Roca", new Empresa("UGOFE"), calculadorCosto)))
     val tiempoPromedioTren = Estadistica.tiempoPromedio()
     println("Tiempo promedio de los viajes en Tren = " + tiempoPromedioTren)
     Estadistica.removeFiltros()
@@ -90,7 +88,7 @@ class TestsEstadisticas extends FlatSpec with Matchers with BeforeAndAfter {
     println("Costo promedio de los viajes en Colectivo = " + costoPromedioColectivo)
     Estadistica.removeFiltros()
 
-    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Roca", new Empresa("UGOFE"), tablaCostos)))
+    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Roca", new Empresa("UGOFE"), calculadorCosto)))
     val costoPromedioTren = Estadistica.costoPromedio()
     println("Costo promedio de los viajes en Tren = " + costoPromedioTren)
     Estadistica.removeFiltros()
@@ -111,7 +109,7 @@ class TestsEstadisticas extends FlatSpec with Matchers with BeforeAndAfter {
     println("Proporcion de viajes en colectivo = " + proporcionViajesColectivo + "%")
     Estadistica.removeFiltros()
 
-    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Roca", new Empresa("UGOFE"), tablaCostos)))
+    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Roca", new Empresa("UGOFE"), calculadorCosto)))
     val proporcionViajesTren = Estadistica.dameProporcion()
     println("Proporcion de viajes en tren = " + proporcionViajesTren + "%")
     Estadistica.removeFiltros()
@@ -169,7 +167,7 @@ class TestsEstadisticas extends FlatSpec with Matchers with BeforeAndAfter {
     Estadistica.removeFiltros()
 
     Estadistica.addFiltro(new FiltroZona("Centro"))
-    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Roca", new Empresa("UGOFE"), tablaCostos)))
+    Estadistica.addFiltro(new FiltroTipoTransporte(new Tren("Roca", new Empresa("UGOFE"), calculadorCosto)))
     val facturacionTotalTren = Estadistica.facturacionTotal()
     println("Facturacion Total Tren para la zona del Centro = " + facturacionTotalTren)
     Estadistica.removeFiltros()

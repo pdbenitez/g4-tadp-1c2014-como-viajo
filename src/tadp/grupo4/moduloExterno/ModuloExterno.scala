@@ -38,34 +38,30 @@ object ModuloExterno {
     new Parada(subteC, new Direccion("Esmeralda", 500, "Almagro", new Coordenada(0,0))))
   subteC.listaDeParadas_=(paradasSubteC)
 
-  var tablaCostosRoca = new TablaPrecios {
-    override def getPrecio(cantParadas: Int): Double = {
+    def costoRoca(cantParadas: Int): Double = {
       cantParadas match{
         case x if(x<=5) => 2.0
         case x if(x<=8) => 3.5
         case x if(x>8) => 4.75
       }
     }
-  }
 
-  var trenRoca: Transporte = new Tren("Roca", new Empresa("UGOFE"), tablaCostosRoca)
+  var trenRoca: Transporte = new Tren("Roca", new Empresa("UGOFE"), costoRoca)
   var paradasTrenRoca = List (
     new Parada(trenRoca, new Direccion("Brasil", 1100, "Constitucion", new Coordenada(1.6,5.5))),
     new Parada(trenRoca, new Direccion("Villarino", 2300, "Barracas", new Coordenada(1.5,7.6)))
   )
   trenRoca.listaDeParadas_=(paradasTrenRoca)
 
-  var tablaCostosUrquiza = new TablaPrecios {
-    override def getPrecio(cantParadas: Int): Double = {
+    def costoUrquiza(cantParadas: Int): Double = {
       cantParadas match{
         case x if(x<=3) => 3.0
         case x if(x<=4) => 4.5
         case x if(x>4) => 5.75
       }
     }
-  }
 
-  var trenUrquiza: Transporte = new Tren("Urquiza", new Empresa("Metrovias"), tablaCostosUrquiza)
+  var trenUrquiza: Transporte = new Tren("Urquiza", new Empresa("Metrovias"), costoUrquiza)
   var paradasTrenUrquiza = List (
     new Parada(trenUrquiza, new Direccion("Corrientes", 6500, "Villa Crespo",  new Coordenada(6.5,1))),
     new Parada(trenUrquiza, new Direccion("Elcano", 4600, "Paternal",  new Coordenada(7.5,1.3))),
@@ -76,7 +72,7 @@ object ModuloExterno {
   )
   trenUrquiza.listaDeParadas_=(paradasTrenUrquiza)
 
-  var trenUrquizaContinuacion: Transporte = new Tren("Urquiza", new Empresa("Metrovias"), tablaCostosUrquiza)
+  var trenUrquizaContinuacion: Transporte = new Tren("Urquiza", new Empresa("Metrovias"), costoUrquiza)
   var paradasTrenUrquizaContinuacion = List (
     new Parada(trenUrquizaContinuacion, new Direccion("San Lejano", 0, "Villa Lejano",  new Coordenada(12.6,4))),
     new Parada(trenUrquizaContinuacion, new Direccion("San Pedro", 0, "Villa Devotito",  new Coordenada(12.6,2))),
@@ -84,17 +80,15 @@ object ModuloExterno {
   )
   trenUrquizaContinuacion.listaDeParadas_=(paradasTrenUrquizaContinuacion)
 
-  var tablaCostosSarmiento = new TablaPrecios {
-    override def getPrecio(cantParadas: Int): Double = {
-      cantParadas match{
-        case x if(x<=5) => 8.0
-        case x if(x<=8) => 8.5
-        case x if(x>8) => 9.75
-      }
+  def costoSamiento(cantParadas: Int): Double = {
+    cantParadas match{
+      case x if(x<=5) => 8.0
+      case x if(x<=8) => 8.5
+      case x if(x>8) => 9.75
     }
   }
 
-  var trenSarmiento: Transporte = new Tren("Sarmiento", new Empresa("SOFSE"), tablaCostosRoca)
+  var trenSarmiento: Transporte = new Tren("Sarmiento", new Empresa("SOFSE"), costoSamiento)
   var paradasTrenSarmiento = List (
     new Parada(trenSarmiento, new Direccion("Pueyrredon", 100, "Balvanera", new Coordenada(3.7,4))),
     new Parada(trenSarmiento, new Direccion("Nicolas Repetto", 200, "Balvanera", new Coordenada(6.4,3.7))),
