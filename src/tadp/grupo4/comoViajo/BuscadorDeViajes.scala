@@ -17,30 +17,26 @@ object BuscadorDeViajes {
     val paradasOrigen = ModuloExterno.buscarParadasMasCercanas(origenNombre, origenAltura, maxDistCaminar)
     val paradasDestino = ModuloExterno.buscarParadasMasCercanas(destinoNombre, destinoAltura, maxDistCaminar)
 
-    val viajesSinCombinacion = new ListBuffer[Viaje]
+    val viajesSinCombinacion = for {
+      paradaOrigen <- paradasOrigen
+      paradaDestino <- paradasDestino
+      if (paradaDestino.transporte.eq(paradaOrigen.transporte))
+    } yield new Viaje(List(new Recorrido(paradaOrigen, paradaDestino, paradaOrigen.transporte)))
 
-    for (paradaOrigen <- paradasOrigen; paradaDestino <- paradasDestino; if (paradaDestino.transporte.eq(paradaOrigen.transporte))) {
-      val recorridos = List(new Recorrido(paradaOrigen, paradaDestino, paradaOrigen.transporte))
-      viajesSinCombinacion += new Viaje(recorridos)
-    }
-
-    val viajesConCombinacion = new ListBuffer[Viaje]
-
-    for (pOrigenInicio <- paradasOrigen; pDestinoFin <- paradasDestino; if (!pOrigenInicio.transporte.eq(pDestinoFin.transporte))) {
-      for (pOrigenFin <- pOrigenInicio.transporte.listaDeParadas; paradaDestinoInicio <- pDestinoFin.transporte.listaDeParadas) {
-        if (ModuloExterno.getDistanciaAPie(pOrigenFin.direccion, paradaDestinoInicio.direccion) < maxDistCaminar) {
-          if ((!pOrigenInicio.eq(pOrigenFin)) && (!paradaDestinoInicio.eq(pDestinoFin))) {
-            val recorridos = List(new Recorrido(pOrigenInicio, pOrigenFin, pOrigenInicio.transporte), new Recorrido(paradaDestinoInicio, pDestinoFin, pDestinoFin.transporte))
-            viajesConCombinacion += new Viaje(recorridos)
-          }
-        }
-      }
-    }
+    val viajesConCombinacion = for {
+      pOrigenInicio <- paradasOrigen
+      pDestinoFin <- paradasDestino
+      if (!pOrigenInicio.transporte.eq(pDestinoFin.transporte))//No tengo idea si el ponerlo aca lo hace mas performante a la hora de la traduccion del compilador de scala.
+      pOrigenFin <- pOrigenInicio.transporte.listaDeParadas
+      paradaDestinoInicio <- pDestinoFin.transporte.listaDeParadas
+      if (ModuloExterno.getDistanciaAPie(pOrigenFin.direccion, paradaDestinoInicio.direccion) < maxDistCaminar)
+      if ((!pOrigenInicio.eq(pOrigenFin)) && (!paradaDestinoInicio.eq(pDestinoFin)))
+    }yield  new Viaje(List(new Recorrido(pOrigenInicio, pOrigenFin, pOrigenInicio.transporte), new Recorrido(paradaDestinoInicio, pDestinoFin, pDestinoFin.transporte)))
 
     val lstViajes = viajesSinCombinacion ++ viajesConCombinacion
     criterio match {
-      case CriterioBusqueda.Costo => lstViajes.sortBy(-_.getCosto()).toList //El menos me permite ordenar de menor a mayor..je
-      case CriterioBusqueda.Tiempo => lstViajes.sortBy(-_.getTiempo).toList
+      case CriterioBusqueda.Costo => lstViajes.sortBy(- _.getCosto()).toList //El menos me permite ordenar de menor a mayor..je
+      case CriterioBusqueda.Tiempo => lstViajes.sortBy(- _.getTiempo).toList
     }
   }
 

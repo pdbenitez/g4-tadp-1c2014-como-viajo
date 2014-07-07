@@ -210,15 +210,7 @@ object ModuloExterno {
     }
 
  private def buscarDireccionMasCercana(direccionNombre: String, direccionAltura: Long): Direccion={
-    var minDist=Long.MaxValue
-    var dirMasCercana:Direccion=null
-    for(dir <- todasLasDirecciones){
-      if(dir.calle==direccionNombre && math.abs(dir.altura-direccionAltura)<minDist){
-        minDist=math.abs(dir.altura-direccionAltura)
-        dirMasCercana=dir
-      }
-    }
-    dirMasCercana
+   todasLasDirecciones.filter(_.calle==direccionNombre).minBy(x=> math.abs( x.altura-direccionAltura))
   }
 
 
@@ -243,26 +235,19 @@ object ModuloExterno {
   def dondeCombinan(transporte1 :Transporte, transporte2 :Transporte): List[Parada]={
 
     //Si combinan en una misma parada
-    for(parada <- transporte1.listaDeParadas){
-      for(parada2 <- transporte2.listaDeParadas){
-        if(parada.direccion.eq(parada2.direccion)) return List(parada)
-      }
-    }
+    for{
+      parada <- transporte1.listaDeParadas
+      parada2 <- transporte2.listaDeParadas
+      if(parada.direccion==parada2.direccion)
+    } yield return List(parada)
 
     //Si hay que caminar para la combinacion
-    var paradasCombinacion: List[Parada] = List()
-    var minDist : Double = Double.MaxValue
+    val lstParadas =for{
+      unaParada <- transporte1.listaDeParadas
+      otraParada <- transporte2.listaDeParadas
+    } yield (unaParada, otraParada)
 
-    for(unaParada <- transporte1.listaDeParadas){
-      for(otraParada <- transporte2.listaDeParadas){
-        val dist = getDistanciaAPie(unaParada.direccion,otraParada.direccion)
-        if(dist<minDist) {
-          minDist = dist
-          paradasCombinacion = List(unaParada,otraParada)
-        }
-      }
-    }
-
-    paradasCombinacion
+    val paradasCombinacion = lstParadas.minBy{case (origen,destino) => getDistanciaAPie(origen.direccion,destino.direccion)} //Unwrapping de tupla papa ;)
+    List(paradasCombinacion._1,paradasCombinacion._2)
   }
 }

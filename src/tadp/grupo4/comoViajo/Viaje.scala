@@ -2,8 +2,6 @@ package tadp.grupo4.comoViajo
 
 import tadp.grupo4.moduloExterno.ModuloExterno
 
-import scala.collection.mutable.ListBuffer
-
 class Viaje (var recorridos: List[Recorrido]){
 
   def obtenerParadasRecorridas:List[Parada] = {
