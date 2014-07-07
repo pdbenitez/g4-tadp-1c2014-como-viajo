@@ -33,19 +33,12 @@ class Viaje (var recorridos: List[Recorrido]){
       var recorridoAnterior:Recorrido = null
       for(unRecorrido<- recorridos){
         if(recorridoAnterior!=null){//Estoy pasando de un transporte a otro
-          val tAnterior = recorridoAnterior.trans
-          val tActual = unRecorrido.trans
-          if(tAnterior.isInstanceOf[Subte] && tActual.isInstanceOf[Subte] && recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion))
-            tiempoTotal+= 4//Combinacion subte
-          else if (  ((tAnterior.isInstanceOf[Tren] && tActual.isInstanceOf[Subte])||(tAnterior.isInstanceOf[Subte] && tActual.isInstanceOf[Tren]))
-                  && recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion))
-            tiempoTotal+= 5//Combinacion subte-tren
-          else if (tAnterior.isInstanceOf[Tren] && tActual.isInstanceOf[Tren] && recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion))
-            tiempoTotal+= 6//Combinacion tren-tren
-          else{//Otra combinacion
-            val dirIniComb = recorridoAnterior.dest.direccion
-            val dirFinComb = unRecorrido.orig.direccion
-            tiempoTotal+= (ModuloExterno.getDistanciaAPie(dirIniComb,dirFinComb))*25  //((dist en km*1000/100)*2.5)
+          (recorridoAnterior.trans, unRecorrido.trans) match{
+            case (tAnterior:Subte, tActual:Subte) if(recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion)) => tiempoTotal+= 4//Combinacion subte
+            case (tAnterior:Tren, tActual:Subte) if (recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion)) => tiempoTotal+= 5//Combinacion tren-subte
+            case (tAnterior:Subte, tActual:Tren) if (recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion)) => tiempoTotal+= 5//Combinacion subte-tren
+            case (tAnterior:Tren, tActual:Tren) if (recorridoAnterior.dest.direccion.eq(unRecorrido.orig.direccion)) => tiempoTotal+= 6//Combinacion tren-tren
+            case _ => tiempoTotal+= (ModuloExterno.getDistanciaAPie(recorridoAnterior.dest.direccion,unRecorrido.orig.direccion))*25  //((dist en km*1000/100)*2.5)
           }
         }else{
           tiempoTotal+= unRecorrido.tiempo
